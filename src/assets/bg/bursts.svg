@@ -6,7 +6,7 @@
 <circle cx="475" cy="1028" r="475" fill="#e2dada"/>
 </mask>
 <g mask="url(#mask0)">
-<circle cx="454" cy="536" r="140" fill="#fdba31"/>
+<circle cx="454" cy="536" r="140" fill="#000000"/>
 </g>
 <circle cx="1527" cy="859" r="68" fill="#e2dada"/>
 </svg>
