@@ -87,7 +87,7 @@ section.banner {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--green);
+    color: var(--gray);
     background-image: url('./assets/bg/main.svg');
     background-size: 175%;
     background-position: 46% 4%;
@@ -106,7 +106,7 @@ section.banner p {
 }
 
 section.banner button {
-    background-color: var(--green);
+    background-color: var(--gray);
     border: none;
     border-radius: 3rem;
     color: #121213;
@@ -155,7 +155,7 @@ footer .links ul li {
 }
 
 footer .links ul li:hover {
-    color: var(--green);
+    color: var(--gray);
     cursor: pointer;
 }
 
@@ -193,7 +193,7 @@ footer .social ul li {
 }
 
 footer .social ul li:hover {
-    color: var(--green);
+    color: var(--gray);
     cursor: pointer;
 }
 
@@ -207,7 +207,7 @@ footer .location {
 }
 
 footer .location:hover {
-    color: var(--green);
+    color: var(--gray);
     cursor: pointer;
 }
 
@@ -239,7 +239,7 @@ footer .extras ul li {
 }
 
 footer .extras ul li:hover {
-    color: var(--green);
+    color: var(--gray);
     cursor: pointer;
 }
 
@@ -248,4 +248,100 @@ footer .extras span {
     color: var(--gray);
     padding-right: 1rem;
     align-self: center;
+}
+
+
+
+
+.testimonials {
+    background: #ECF2F7;
+    padding: 4rem 0;
+}
+
+.heading h1 {
+    font-size: 3rem;
+    margin: 3rem;
+}
+
+.container {
+    width: 95%;
+    max-width: 1280px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "item1 item1 item2 item3" "item4 item5 item5 item3";
+    gap: 1.5rem;
+}
+
+.items {
+    border-radius: 5px;
+    padding: 1.5rem;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "image name" "title title" "description description";
+    row-gap: 1.5rem;
+    align-content: start;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.items img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    grid-area: image;
+}
+
+.items .name {
+    font-size: 1.6rem;
+    grid: name;
+    align-self: center;
+    padding-left: 1rem;
+    font-weight: 600;
+}
+
+.items .title {
+    font-size: 1.8rem;
+    grid-area: title;
+    font-weight: 600;
+}
+
+.items .description {
+    font-size: 1.6rem;
+    grid-area: description;
+}
+
+.items .description::before {
+    content: '"';
+}
+
+.items .description::after {
+    content: '"';
+}
+
+.item1 {
+    background: #733FC7 url('./media/quotation.png') no-repeat top 10% right 20px;
+    background-size: 50px;
+    grid-area: item1;
+}
+
+.item2 {
+    background: #49556C;
+    grid-area: item2;
+}
+
+.item3 {
+    background: #FEFEFE;
+    grid-area: item3;
+}
+
+.item4 {
+    background: #FEFEFE;
+    grid-area: item4;
+}
+
+.item5 {
+    background: #181F2C;
+    grid-area: item5;
 }
