@@ -87,7 +87,7 @@ section.banner {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--gray);
+    color: var(--green);
     background-image: url('./assets/bg/main.svg');
     background-size: 175%;
     background-position: 46% 4%;
@@ -106,7 +106,7 @@ section.banner p {
 }
 
 section.banner button {
-    background-color: var(--gray);
+    background-color: var(--green);
     border: none;
     border-radius: 3rem;
     color: #121213;
@@ -155,7 +155,7 @@ footer .links ul li {
 }
 
 footer .links ul li:hover {
-    color: var(--gray);
+    color: var(--green);
     cursor: pointer;
 }
 
@@ -193,7 +193,7 @@ footer .social ul li {
 }
 
 footer .social ul li:hover {
-    color: var(--gray);
+    color: var(--green);
     cursor: pointer;
 }
 
@@ -207,7 +207,7 @@ footer .location {
 }
 
 footer .location:hover {
-    color: var(--gray);
+    color: var(--green);
     cursor: pointer;
 }
 
@@ -239,7 +239,7 @@ footer .extras ul li {
 }
 
 footer .extras ul li:hover {
-    color: var(--gray);
+    color: var(--green);
     cursor: pointer;
 }
 
@@ -332,12 +332,12 @@ footer .extras span {
 }
 
 .item3 {
-    background: #FEFEFE;
+    background: #6b3b3b;
     grid-area: item3;
 }
 
 .item4 {
-    background: #FEFEFE;
+    background: #673737;
     grid-area: item4;
 }
 
