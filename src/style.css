@@ -66,7 +66,7 @@ header nav ul li {
 }
 
 header nav ul li:hover {
-    color: var(--green);
+    color: var(--white);
     cursor: pointer;
 }
 
@@ -87,7 +87,7 @@ section.banner {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--green);
+    color: var(--white);
     background-image: url('./assets/bg/main.svg');
     background-size: 175%;
     background-position: 46% 4%;
@@ -105,8 +105,15 @@ section.banner p {
     text-align: center;
 }
 
+section.banner-dark p {
+    font-size: 1.6rem;
+    margin: 2rem 0;
+    text-align: center;
+    color: #000000;
+}
+
 section.banner button {
-    background-color: var(--green);
+    background-color: var(--white);
     border: none;
     border-radius: 3rem;
     color: #121213;
@@ -155,7 +162,7 @@ footer .links ul li {
 }
 
 footer .links ul li:hover {
-    color: var(--green);
+    color: var(--white);
     cursor: pointer;
 }
 
@@ -193,7 +200,7 @@ footer .social ul li {
 }
 
 footer .social ul li:hover {
-    color: var(--green);
+    color: var(--white);
     cursor: pointer;
 }
 
@@ -207,7 +214,7 @@ footer .location {
 }
 
 footer .location:hover {
-    color: var(--green);
+    color: var(--white);
     cursor: pointer;
 }
 
@@ -239,7 +246,7 @@ footer .extras ul li {
 }
 
 footer .extras ul li:hover {
-    color: var(--green);
+    color: var(--white);
     cursor: pointer;
 }
 
