@@ -27,7 +27,7 @@ li {
 }
 
 header {
-    background-color: #000000;
+    background-color: #444646;
     height: var(--header-height);
 }
 
@@ -81,14 +81,14 @@ header nav.mobile-menu img {
 }
 
 section.banner {
-    background-color: #2941AB;
+    background-color: #670574;
     height: 120vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: var(--green);
-    background-image: url('./media/bg/main.svg');
+    background-image: url('./assets/bg/main.svg');
     background-size: 175%;
     background-position: 46% 4%;
     background-repeat: no-repeat;
@@ -109,7 +109,7 @@ section.banner button {
     background-color: var(--green);
     border: none;
     border-radius: 3rem;
-    color: #2941AB;
+    color: #121213;
     font-size: 1.4rem;
     font-weight: 600;
     padding: 1.8rem 2.7rem;
