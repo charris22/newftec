@@ -167,13 +167,13 @@ footer .links ul li:hover {
 }
 
 footer .links ul .heading {
-    color: var(--gray);
+    color: var(--purple);
     font-weight: 700;
     font-size: 1.3rem;
 }
 
 footer .links ul .heading:hover {
-    color: var(--gray);
+    color: var(--white);
     cursor: text;
 }
 
@@ -210,7 +210,7 @@ footer .location {
     display: flex;
     justify-content: flex-end;
     font-size: 1.2rem;
-    color: var(--gray);
+    color: var(--purple);
 }
 
 footer .location:hover {
