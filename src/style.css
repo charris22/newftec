@@ -321,11 +321,11 @@ footer .extras span {
 }
 
 .items .description::before {
-    content: '"';
+    content: '';
 }
 
 .items .description::after {
-    content: '"';
+    content: '';
 }
 
 .item1 {
@@ -340,12 +340,12 @@ footer .extras span {
 }
 
 .item3 {
-    background: #6b3b3b;
+    background: #8209cd;
     grid-area: item3;
 }
 
 .item4 {
-    background: #673737;
+    background: #6142d2;
     grid-area: item4;
 }
 
