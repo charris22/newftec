@@ -31,7 +31,7 @@
       </nav>
       <nav class="mobile-menu">
         <img src="./assets/icons/hamburger-icon.jpg" alt="">
-        <details>
+        <!--<details>
           <summary>
             <ul>
               <li><a href="./contactUs.html">Contact Us</a> </li>
@@ -39,7 +39,32 @@
               <li>Learn More</li>
             </ul>
           </summary>
-        </details>
+        </details>-->
+        <nav id="main-menu">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Store</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+
+        <input type="checkbox" id="hamburger-input" class="burger-shower" />
+        <label id="hamburger-menu" for="hamburger-input">
+          <nav id="sidebar-menu">
+            <h3>Menu</h3>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Store</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </label>
+
+        <div class="overlay"></div>
       </nav>
     </div>
   </header>
