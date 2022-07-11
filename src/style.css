@@ -271,6 +271,12 @@ footer .extras span {
     color: #000000;
 }
 
+.heading h2 {
+    font-size: 2rem;
+    margin: 2rem;
+    color: #000000;
+}
+
 .container {
     width: 95%;
     max-width: 1280px;
