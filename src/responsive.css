@@ -9,6 +9,13 @@
     section.banner h1 {
         font-size: 10rem;
     }
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas: "item1 item1 item2" "item4 item5 item5" "item3 item3 item3";
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width:768px) {
@@ -35,6 +42,13 @@
     }
     footer .extras span {
         margin-top: 2rem;
+    }
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "item1" "item2" "item3" "item4" "item5";
+        gap: 1.5rem;
     }
 }
 
