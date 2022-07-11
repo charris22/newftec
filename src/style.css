@@ -173,7 +173,7 @@ footer .links ul .heading {
 }
 
 footer .links ul .heading:hover {
-    color: var(--white);
+    color: var(--purple);
     cursor: text;
 }
 
@@ -241,7 +241,7 @@ footer .extras ul {
 
 footer .extras ul li {
     font-size: 1.1rem;
-    color: var(--gray);
+    color: var(--#670574);
     padding: 0.5rem 1rem;
 }
 
