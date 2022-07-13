@@ -69,10 +69,11 @@ header nav ul li {
     padding: 0 2rem;
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--white);
 }
 
 header nav ul li:hover {
-    color: var(--white);
+    color: var(--purple);
     cursor: pointer;
 }
 
@@ -108,7 +109,7 @@ section.newf {
     justify-content: center;
     align-items: center;
     background-image: url('./assets/images/BruceNewftecLogo.svg');
-    background-size: 75%;
+    background-size: 100%;
     background-repeat: no-repeat;
 }
 
@@ -177,15 +178,16 @@ footer .links {
 footer .links ul li {
     font-size: 1.5rem;
     padding: 1.3rem;
+    color: var(--white);
 }
 
 footer .links ul li:hover {
-    color: var(--white);
+    color: var(--purple);
     cursor: pointer;
 }
 
 footer .links ul .heading {
-    color: var(--purple);
+    color: var(--white);
     font-weight: 700;
     font-size: 1.3rem;
 }
