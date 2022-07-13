@@ -95,6 +95,18 @@ section.banner {
     background-repeat: no-repeat;
 }
 
+section.newf {
+    background-color: #000000;
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./assets/images/BruceNewftecLogo.svg');
+    background-size: 75%;
+    background-repeat: no-repeat;
+}
+
 section.banner h1 {
     font-size: 12rem;
     line-height: 1.2;
