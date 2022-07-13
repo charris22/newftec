@@ -3,7 +3,7 @@
     --purple: #6247aa;
     --gray: #062726;
     --header-height: 80px;
-    --logo-height: 40px;
+    --logo-height: 60px;
 }
 
 
@@ -321,7 +321,7 @@ footer .extras span {
 }
 
 .items .name {
-    font-size: 1.6rem;
+    font-size: 2.0rem;
     grid: name;
     align-self: center;
     padding-left: 1rem;
@@ -329,13 +329,13 @@ footer .extras span {
 }
 
 .items .title {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     grid-area: title;
     font-weight: 600;
 }
 
 .items .description {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     grid-area: description;
 }
 
@@ -348,8 +348,7 @@ footer .extras span {
 }
 
 .item1 {
-    background: #733FC7 url('./media/quotation.png') no-repeat top 10% right 20px;
-    background-size: 50px;
+    background: #733FC7;
     grid-area: item1;
 }
 
