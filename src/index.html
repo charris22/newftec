@@ -24,7 +24,10 @@
       margin: 0;
     }
 
-    
+    webchat {
+      height: 100%;
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -39,7 +42,7 @@
         <ul>
           <li><a href="./contactUs.html">Contact Us</a> </li>
           <li><a href="./values.html">About Us</a></li>
-          
+
         </ul>
       </nav>
       <nav class="mobile-menu">
@@ -53,6 +56,7 @@
   </header>
 
   <main>
+    <div id="webchat" role="main"></div>
     <script>
       (async function () {
         const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
@@ -67,8 +71,8 @@
       <p>Make sure your systems support that work for you, your employees, and your customers.</p>
       <button><a href="./values.html">LEARN MORE</a></button>
     </section>
-    <div id="webchat" role="main"></div>
-  
+
+
   </main>
 
   <footer>
@@ -82,12 +86,14 @@
             <li><a href="./contactUs.html">Contact Us</a> </li>
           </ul>
         </div>
-        
+
         <div class="useful-links">
           <ul>
             <li class="heading">RESOURCES ABOUT THIS SITE</li>
-            <li><a href="https://docs.microsoft.com/en-us/azure/architecture/framework/">Azure Well Architected Framework</a> </li>
-            <li><a href="https://docs.microsoft.com/en-us/azure/static-web-apps/overview">Azure Static Web Apps</a> </li>
+            <li><a href="https://docs.microsoft.com/en-us/azure/architecture/framework/">Azure Well Architected
+                Framework</a> </li>
+            <li><a href="https://docs.microsoft.com/en-us/azure/static-web-apps/overview">Azure Static Web Apps</a>
+            </li>
             <li><a href="#">Azure ChatBot Quick Start</a> </li>
           </ul>
         </div>
@@ -103,10 +109,10 @@
       <div class="location">
         <i class="fas fa-globe-europe"></i>
         <span>© 2022 Newftec, LLC </span>
-          
+
         <span>Texas, USA </span>
       </div>
-      
+
     </section>
   </footer>
 
