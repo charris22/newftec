@@ -24,7 +24,7 @@
       margin: 0;
     }
 
-    webchat {
+    #webchat {
       height: 100%;
       width: 100%;
     }
@@ -32,7 +32,22 @@
 </head>
 
 <body>
+  <div id="webchat" role="main"></div>
+  <script>
+    (async function () {
+      const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
+      const { token } = await res.json();
 
+      window.WebChat.renderWebChat(
+        {
+          directLine: window.WebChat.createDirectLine({ token })
+        },
+        document.getElementById('webchat')
+      );
+
+      document.querySelector('#webchat > *').focus();
+    })().catch(err => console.error(err));
+  </script>
   <header>
     <div class="container">
       <div class="logo">
@@ -56,26 +71,11 @@
   </header>
 
   <main>
-    <div id="webchat" role="main"></div>
-    <script>
-      (async function() {
-        const res = await fetch('https://webchat-mockbot.azurewebsites.net/directline/token', { method: 'POST' });
-        const { token } = await res.json();
 
-        window.WebChat.renderWebChat(
-          {
-            directLine: window.WebChat.createDirectLine({ token })
-          },
-          document.getElementById('webchat')
-        );
-
-        document.querySelector('#webchat > *').focus();
-      })().catch(err => console.error(err));
-    </script>
     <section class="banner">
       <h1>Hard work is<br>everything</h1>
       <p>Make sure your systems support that work for you, your employees, and your customers.</p>
-      <button><a href="./values.html">LEARN MORE</a></button>
+      <button color="white"><a href="./values.html">LEARN MORE</a></button>
     </section>
 
 
