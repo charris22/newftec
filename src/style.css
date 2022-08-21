@@ -104,11 +104,11 @@ section.banner {
 
 section.newf {
     background-color: #000000;
-    height: 120vh;
+    height: 20vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: right;
     background-image: url('./assets/images/BruceNewftecLogo.svg');
     background-size: 100%;
     background-repeat: no-repeat;
