@@ -306,13 +306,13 @@ footer .extras span {
 
 .newf {
     background-color: #000000;
-    height: 3vh;
+    height: 5vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: right;
     background-image: url('./assets/images/BruceNewftecLogo.svg');
-    background-size: 100%;
+    background-size: 10%;
     background-repeat: no-repeat;
 }
 
