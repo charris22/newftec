@@ -102,17 +102,7 @@ section.banner {
     background-repeat: no-repeat;
 }
 
-section.newf {
-    background-color: #000000;
-    height: 20vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: right;
-    background-image: url('./assets/images/BruceNewftecLogo.svg');
-    background-size: 100%;
-    background-repeat: no-repeat;
-}
+
 
 section.banner h1 {
     font-size: 12rem;
@@ -312,6 +302,18 @@ footer .extras span {
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas: "item1 item1 item2 item3" "item4 item5 item5 item3";
     gap: 1.5rem;
+}
+
+.newf {
+    background-color: #000000;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: right;
+    background-image: url('./assets/images/BruceNewftecLogo.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 .items {
