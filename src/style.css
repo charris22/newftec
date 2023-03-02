@@ -74,7 +74,7 @@ header nav ul li {
 }
 
 header nav ul li:hover {
-    color: var(--purple);
+    color: var(--grey);
     cursor: pointer;
 }
 
@@ -89,14 +89,14 @@ header nav.mobile-menu img {
 }
 
 section.banner {
-    background-color: #670574;
+    background-color: black;/* #670574; */
     height: 120vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: var(--white);
-    background-image: url('./assets/bg/main.svg');
+    /*background-image: url('./assets/bg/main.svg');*/
     background-size: 175%;
     background-position: 46% 4%;
     background-repeat: no-repeat;
