@@ -89,7 +89,7 @@ header nav.mobile-menu img {
 }
 
 section.banner {
-    background-color: black;/* #670574; */
+    background-color: #0A0906;/* #670574; */
     height: 120vh;
     display: flex;
     flex-direction: column;
