@@ -96,7 +96,6 @@ section.banner {
     justify-content: center;
     align-items: center;
     color: var(--white);
-    /* background-image: url('./assets/bg/main.svg'); */
     background-size: 175%;
     background-position: 46% 4%;
     background-repeat: no-repeat;
@@ -221,7 +220,7 @@ footer .location {
     display: flex;
     justify-content: flex-end;
     font-size: 1.2rem;
-    color: var(--purple);
+    color: var(--white);
 }
 
 footer .location:hover {

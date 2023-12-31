@@ -2,7 +2,7 @@
 
 @media (max-width:1279px) {
     section.banner {
-        background-image: url('./assets/bg/main-tablet.svg');
+        /*background-image: url('./assets/bg/main-tablet.svg');*/
         background-size: 153%;
         background-position: right 40% center;
     }
@@ -27,7 +27,7 @@
         display: none;
     }
     header nav.mobile-menu {
-        display: inline;
+        display: flex;
     }
     section.banner h1 {
         font-size: 6rem;
@@ -58,7 +58,7 @@
         --logo-height: 25px;
     }
     section.banner {
-        background-image: url('./assets/bg/main-mobile.svg');
+        /*background-image: url('./assets/bg/main-mobile.svg');*/
         background-size: 195%;
         background-position: center top 50%;
     }
