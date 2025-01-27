@@ -1,9 +1,9 @@
 .b-t {
-    color: #000000;
+    color: var(--text-color);
 }
 
 .w-t {
-    color: #ffffff;
+    color: var(--background-color);
 }
 
 .h-c {
