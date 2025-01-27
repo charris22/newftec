@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
-    --primary-color: #007BFF;
-    --secondary-color: #6C757D;
-    --background-color: #F8F9FA;
-    --text-color: #343A40;
+    --primary-color: #00c84374;
+    --secondary-color: #00cc0059;
+    --background-color: #121212;
+    --text-color: #E0E0E0;
     --header-height: 80px;
     --logo-height: 60px;
 }
