@@ -386,4 +386,40 @@ footer {
             font-size: 13px;
         }
     }
+
+    /* Header Brand Styling */
+    .header-brand {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .brand-name {
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        color: #3b82f6;
+        /* A striking blue, similar to tech branding */
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+    }
+
+    .brand-name:hover {
+        color: #2563eb;
+        /* Darker blue on hover for emphasis */
+    }
+
+    /* Responsive Adjustments for Mobile */
+    @media (max-width: 768px) {
+        .header-brand {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .brand-name {
+            font-size: 18px;
+            /* Smaller text on mobile */
+        }
+    }
 }
