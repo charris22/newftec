@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
-    --primary-color: #00c84374;
-    --secondary-color: #00cc0059;
-    --background-color: #121212;
-    --text-color: #E0E0E0;
+    --primary-color: #00FF00; /* Green tone */
+    --secondary-color: #00CC00; /* Darker green tone */
+    --background-color: #121212; /* Dark background */
+    --text-color: #E0E0E0; /* Light text color */
     --header-height: 80px;
     --logo-height: 60px;
 }
@@ -19,6 +19,7 @@ html {
     font-size: 10px;
     color: var(--text-color);
     font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
 }
 
 a {
@@ -90,13 +91,13 @@ header nav.mobile-menu img {
 }
 
 section.banner {
-    background-color: var(--primary-color);
+    background-color: var(--background-color);
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: var(--background-color);
+    color: var(--primary-color);
     background-size: cover;
     background-position: center;
 }
@@ -113,21 +114,9 @@ section.banner p {
     text-align: center;
 }
 
-section.banner button {
-    background-color: var(--secondary-color);
-    border: none;
-    border-radius: 3rem;
-    color: var(--background-color);
-    font-size: 1.6rem;
-    font-weight: 500;
-    padding: 1.8rem 2.7rem;
-    margin: 2rem 0;
-    transition: background-color 0.3s;
-}
-
-section.banner button:hover {
-    cursor: pointer;
-    background-color: var(--primary-color);
+section.banner img {
+    width: 80%;
+    height: auto;
 }
 
 footer {
@@ -178,19 +167,19 @@ footer .location span {
 .heading h1 {
     font-size: 4rem;
     margin-bottom: 2rem;
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 .heading h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 .heading h3 {
     font-size: 1.8rem;
     margin-bottom: 2rem;
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 .container {
@@ -210,6 +199,7 @@ footer .location span {
     align-items: center;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px 0px;
     background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .items img {
