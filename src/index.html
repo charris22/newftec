@@ -1,94 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-
-  <title>NEWFTEC</title>
+  <meta name="description" content="NEWFTEC provides advanced, cloud-native technology solutions to transform small and medium businesses through automation, analytics, and customer engagement.">
+  <title>NEWFTEC | Technology Consulting</title>
   <link rel="shortcut icon" href="./assets/icons/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./responsive.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/1af3d7e4a4.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-  
   <header>
     <div class="container">
       <div class="logo">
-        <img src="./assets/icons/newf-icon-washout.svg" alt="NEWFTEC Logo"> 
+        <a href="./index.html">
+          <img src="./assets/icons/newf-icon-washout.svg" alt="NEWFTEC Logo">
+        </a>
       </div>
       <nav class="desktop-menu">
         <ul>
-          <li><a href="./contactUs.html">Contact Us</a></li>
+          <li><a href="./index.html">Home</a></li>
           <li><a href="./values.html">About Us</a></li>
+          <li><a href="./contactUs.html">Contact</a></li>
         </ul>
       </nav>
       <nav class="mobile-menu">
-        <img src="./assets/icons/hamburger-icon.jpg" alt="Menu">
-        <ul>
-          <li><a href="./contactUs.html">Contact Us</a></li>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <img src="./assets/icons/hamburger-icon.jpg" alt="Menu">
+        </button>
+        <ul class="mobile-nav">
+          <li><a href="./index.html">Home</a></li>
           <li><a href="./values.html">About Us</a></li>
+          <li><a href="./contactUs.html">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="banner">
-      <h1>Hard work is everything</h1>
-      <p>Work confidently. Build systems that work back for you, your employees, and your customers. Be a top dog.</p>
-      <img src="./assets/images/NewftecAi3.png" alt="Newftec AI" width="80%" height="auto">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Transforming Business Through Technology</h1>
+        <p>Empower your company with cloud-native solutions that drive automation, analytics, and customer engagement.</p>
+        <a href="./contactUs.html" class="cta-button">Get Started</a>
+      </div>
+      <img src="./assets/images/NewftecAi3.png" alt="NEWFTEC Technology Solutions" class="hero-image">
     </section>
-    <section class="testimonials">
-        <div class="heading">
-            <h1>NEWFTEC</h1>
-            <h2>Transforming Businesses with Technology</h2>
-            <p>We provide advanced, cloud-native solutions to drive automation, analytics, and customer engagement for small and medium businesses. Simple implementation. Secure and observable.</p>
+
+    <section class="services">
+      <div class="container">
+        <h2>Our Solutions</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Powerful</h3>
+            <p>Leverage big data, IoT, and social media to gain a competitive edge with robust, scalable technology.</p>
+          </div>
+          <div class="service-card">
+            <h3>Simple & Adaptable</h3>
+            <p>Start small and scale seamlessly with intuitive solutions tailored to your business needs.</p>
+          </div>
+          <div class="service-card">
+            <h3>Durable</h3>
+            <p>Build on a stable, secure foundation designed for long-term success and sustainability.</p>
+          </div>
         </div>
-        <div class="container">
-            <div class="items item1 w-t">
-                <h3>Powerful</h3>
-                <p>Unleash your competitive edge with technology solutions that tap into big data, social media, IoT, and more.</p>
-                <p>Our powerful solutions are designed to handle the most demanding business challenges, providing you with the tools you need to succeed in a competitive market.</p>
-            </div>
-            <div class="items item2 w-t">
-                <h3>Simple & Adaptable</h3>
-                <p>Start small, scale on your terms. We help you implement high-value solutions quickly and easily.</p>
-                <p>Our adaptable solutions grow with your business, ensuring that you can scale your operations without any disruptions.</p>
-            </div>
-            <div class="items item3">
-                <h3>Durable</h3>
-                <p>Build on a strong foundation. Our technology solutions are stable, supported, and sustainable.</p>
-                <p>With our durable solutions, you can rely on a robust infrastructure that supports your business goals and ensures long-term success.</p>
-            </div>
-        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <section class="container">
-      <div class="links">
-        <div class="company">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <h4>Company</h4>
           <ul>
-            <li class="heading">COMPANY</li>
             <li><a href="./values.html">About Us</a></li>
             <li><a href="./contactUs.html">Contact Us</a></li>
-            <li><a href="./aboutSite.html">About this site</a></li>
+            <li><a href="./aboutSite.html">About This Site</a></li>
           </ul>
         </div>
+        <div class="footer-info">
+          <p><i class="fas fa-globe-americas"></i> Texas, USA</p>
+          <p>&copy; 2025 Newftec, LLC. All rights reserved.</p>
+        </div>
       </div>
-      <div class="location">
-        <i class="fas fa-globe-europe"></i>
-        <span>© 2025 Newftec, LLC</span>
-        <span>Texas, USA</span>
-      </div>
-    </section>
+    </div>
   </footer>
-</body>
 
+  <script>
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('.mobile-nav').classList.toggle('active');
+    });
+  </script>
+</body>
 </html>
