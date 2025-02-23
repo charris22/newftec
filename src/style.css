@@ -117,13 +117,13 @@ header .container {
 .hero h1 {
     font-size: 48px;
     font-weight: 700;
-    color: #1a202c;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
 .hero p {
     font-size: 18px;
-    color: #4a5568;
+    color: #000000;
     margin-bottom: 30px;
 }
 
