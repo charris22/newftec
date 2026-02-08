@@ -1,0 +1,449 @@
+---
+/**
+ * AI Agent Widget
+ * A reusable component for embedding AI-powered chat agents throughout the site.
+ * Connects to Azure Function backend powered by Azure OpenAI.
+ */
+
+interface Props {
+  title?: string;
+  placeholder?: string;
+  apiEndpoint?: string;
+  height?: string;
+  showHeader?: boolean;
+}
+
+const { 
+  title = 'AI Assistant',
+  placeholder = 'Ask me anything about our services...',
+  apiEndpoint = '/api/chat',
+  height = '400px',
+  showHeader = true
+} = Astro.props;
+
+const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class="agent-widget" data-widget-id={widgetId}>
+  {showHeader && (
+    <div class="agent-header">
+      <div class="agent-status">
+        <span class="status-dot"></span>
+        <span class="status-text">Online</span>
+      </div>
+      <span class="agent-title">{title}</span>
+    </div>
+  )}
+  <div class="agent-container" style={`height: ${height};`}>
+    <div class="agent-messages" id={`messages-${widgetId}`}>
+      <div class="welcome-message">
+        <p>👋 Hi! I'm your AI assistant powered by generative AI.</p>
+        <p>I can help you with:</p>
+        <ul>
+          <li>Understanding our services</li>
+          <li>Technical architecture questions</li>
+          <li>Cloud and AI best practices</li>
+          <li>Getting started with your project</li>
+        </ul>
+      </div>
+    </div>
+    <form class="agent-input" id={`form-${widgetId}`}>
+      <input 
+        type="text" 
+        placeholder={placeholder}
+        id={`input-${widgetId}`}
+        autocomplete="off"
+      />
+      <button type="submit" aria-label="Send message">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script define:vars={{ widgetId, apiEndpoint }}>
+  // Chat widget with Azure OpenAI backend
+  const form = document.getElementById(`form-${widgetId}`);
+  const input = document.getElementById(`input-${widgetId}`);
+  const messages = document.getElementById(`messages-${widgetId}`);
+  const submitBtn = form?.querySelector('button[type="submit"]');
+  
+  // Conversation history for context
+  let conversationHistory = [];
+
+  // Fallback responses when API is unavailable
+  const fallbackResponses = {
+    'services': 'We offer Cloud Migration, GenAI & Intelligent Automation, App Modernization, Data Analytics, DevOps, and Security services. Which area interests you most?',
+    'pricing': 'Our pricing depends on project scope and complexity. We offer fixed-price projects, time & materials, and managed service agreements. Would you like to schedule a consultation to discuss your specific needs?',
+    'cloud': 'We specialize in cloud-native architectures including serverless, containers, managed databases, and hybrid solutions. What specific area are you interested in?',
+    'contact': 'You can reach us through our contact form at /contact, or chat with me here! For urgent matters, you can also email us directly.',
+    'ai': 'Our AI solutions include custom chatbots, document processing, predictive analytics, and large language model integrations. We can build AI agents tailored to your business processes.',
+    'default': 'That\'s a great question! For detailed discussions, I\'d recommend scheduling a consultation with our team. Would you like me to help you with that?'
+  };
+
+  function addMessage(text, isUser, isError = false) {
+    const msg = document.createElement('div');
+    msg.className = `message ${isUser ? 'user' : 'bot'}${isError ? ' error' : ''}`;
+    msg.innerHTML = `<p>${text}</p>`;
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function addTypingIndicator() {
+    const indicator = document.createElement('div');
+    indicator.className = 'message bot typing-indicator';
+    indicator.id = `typing-${widgetId}`;
+    indicator.innerHTML = '<p><span></span><span></span><span></span></p>';
+    messages.appendChild(indicator);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function removeTypingIndicator() {
+    const indicator = document.getElementById(`typing-${widgetId}`);
+    if (indicator) indicator.remove();
+  }
+
+  function setLoading(loading) {
+    if (submitBtn) {
+      submitBtn.disabled = loading;
+      submitBtn.classList.toggle('loading', loading);
+    }
+    if (input) input.disabled = loading;
+  }
+
+  function getFallbackResponse(userMessage) {
+    const lower = userMessage.toLowerCase();
+    for (const [key, response] of Object.entries(fallbackResponses)) {
+      if (key !== 'default' && lower.includes(key)) {
+        return response;
+      }
+    }
+    return fallbackResponses.default;
+  }
+
+  async function sendMessage(text) {
+    // Add user message to history
+    conversationHistory.push({ role: 'user', content: text });
+    
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: text,
+          conversationHistory: conversationHistory.slice(-10) // Send last 10 messages
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // Add assistant message to history
+      conversationHistory.push({ role: 'assistant', content: data.message });
+      
+      return data.message;
+    } catch (error) {
+      console.warn('Chat API error, using fallback:', error);
+      // Use fallback response
+      const fallback = getFallbackResponse(text);
+      conversationHistory.push({ role: 'assistant', content: fallback });
+      return fallback;
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, true);
+    input.value = '';
+    
+    setLoading(true);
+    addTypingIndicator();
+
+    try {
+      const response = await sendMessage(text);
+      removeTypingIndicator();
+      addMessage(response, false);
+    } catch (error) {
+      removeTypingIndicator();
+      addMessage('Sorry, I encountered an issue. Please try again.', false, true);
+    } finally {
+      setLoading(false);
+      input?.focus();
+    }
+  });
+</script>
+
+<style>
+  .agent-widget {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .agent-header {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .agent-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .status-text {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+
+  .agent-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .agent-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .agent-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f9fafb;
+  }
+
+  .welcome-message {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+  }
+
+  .welcome-message p {
+    margin: 0 0 10px;
+    color: #1a202c;
+  }
+
+  .welcome-message ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #4a5568;
+  }
+
+  .welcome-message li {
+    margin: 5px 0;
+  }
+
+  .message {
+    margin: 10px 0;
+    max-width: 80%;
+  }
+
+  .message.user {
+    margin-left: auto;
+  }
+
+  .message p {
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .message.user p {
+    background: #3b82f6;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+
+  .message.bot p {
+    background: #fff;
+    color: #1a202c;
+    border: 1px solid #e5e7eb;
+    border-bottom-left-radius: 4px;
+  }
+
+  .agent-input {
+    display: flex;
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    gap: 10px;
+  }
+
+  .agent-input input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .agent-input input:focus {
+    border-color: #3b82f6;
+  }
+
+  .agent-input button {
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .agent-input button:hover {
+    background: #2563eb;
+  }
+
+  .agent-input button:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+  }
+
+  .agent-input button.loading {
+    position: relative;
+  }
+
+  .agent-input button.loading svg {
+    opacity: 0;
+  }
+
+  .agent-input button.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .agent-input input:disabled {
+    background: #f1f5f9;
+    cursor: not-allowed;
+  }
+
+  /* Typing indicator */
+  .typing-indicator p {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: #94a3b8;
+    border-radius: 50%;
+    animation: bounce 1.4s ease-in-out infinite;
+  }
+
+  .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+  }
+
+  .message.error p {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+  }
+
+  /* Dark mode styles */
+  :global(html.dark) .agent-messages {
+    background: #1e293b;
+  }
+
+  :global(html.dark) .welcome-message {
+    background: #334155;
+    border-color: #475569;
+  }
+
+  :global(html.dark) .welcome-message p {
+    color: #f1f5f9;
+  }
+
+  :global(html.dark) .welcome-message ul {
+    color: #cbd5e1;
+  }
+
+  :global(html.dark) .message.bot p {
+    background: #334155;
+    border-color: #475569;
+    color: #f1f5f9;
+  }
+
+  :global(html.dark) .agent-input {
+    background: #1e293b;
+    border-top-color: #475569;
+  }
+
+  :global(html.dark) .agent-input input {
+    background: #334155;
+    border-color: #475569;
+    color: #f1f5f9;
+  }
+
+  :global(html.dark) .agent-input input::placeholder {
+    color: #94a3b8;
+  }
+
+  :global(html.dark) .typing-indicator p {
+    background: #334155;
+    border-color: #475569;
+  }
+
+  :global(html.dark) .message.error p {
+    background: #450a0a;
+    border-color: #7f1d1d;
+    color: #fecaca;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = [
+  { href: '/about', label: 'About Us' },
+  { href: '/services', label: 'Services' },
+  // { href: '/case-studies', label: 'Case Studies' },
+  // { href: '/testimonials', label: 'Testimonials' },
+  { href: '/chat', label: 'AI Assistant' },
+  { href: '/contact', label: 'Contact Us' },
+];
+---
+
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-links">
+        <h4>Company</h4>
+        <ul>
+          {footerLinks.map(link => (
+            <li><a href={link.href}>{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="footer-info">
+        <p>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          Texas, USA
+        </p>
+        <p>&copy; {currentYear} Newftec, LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

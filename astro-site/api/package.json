@@ -1,0 +1,21 @@
+{
+  "name": "newftec-chat-api",
+  "version": "1.0.0",
+  "description": "Azure Functions API for NEWFTEC AI chat powered by Azure OpenAI",
+  "main": "src/functions/*.js",
+  "type": "module",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "openai": "^4.76.0"
+  },
+  "devDependencies": {
+    "azure-functions-core-tools": "^4.x"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

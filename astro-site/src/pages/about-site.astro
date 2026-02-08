@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const techStack = [
+  {
+    icon: '🚀',
+    title: 'Serverless Architecture',
+    description: 'Completely serverless deployment using static web hosting. No infrastructure management, automatic scaling, and global CDN distribution.'
+  },
+  {
+    icon: '🔄',
+    title: 'Modern DevOps',
+    description: 'Integrated with GitHub for version control and GitHub Actions for CI/CD pipelines. Every push triggers automated builds and deployments.'
+  },
+  {
+    icon: '💰',
+    title: 'Cost-Effective',
+    description: 'Running costs under $10/month thanks to serverless architecture and static web hosting free tiers.'
+  },
+  {
+    icon: '⚡',
+    title: 'Astro Framework',
+    description: 'Built with Astro for optimal performance—ships zero JavaScript by default and only hydrates interactive components on demand.'
+  }
+];
+
+const cloudResources = [
+  {
+    name: 'Well-Architected Framework',
+    url: 'https://docs.microsoft.com/en-us/azure/architecture/framework/',
+    description: 'Best practices for building reliable, secure, and efficient cloud solutions.'
+  },
+  {
+    name: 'Static Web Apps',
+    url: 'https://docs.microsoft.com/en-us/azure/static-web-apps/overview',
+    description: 'Host modern web apps with integrated APIs, authentication, and global distribution.'
+  },
+  {
+    name: 'Cloud AI Services',
+    url: 'https://azure.microsoft.com/en-us/products/ai-services',
+    description: 'Build intelligent applications with pre-built AI capabilities and custom models.'
+  }
+];
+---
+
+<BaseLayout 
+  title="About This Site | NEWFTEC"
+  description="Learn about the technology stack and architecture powering the NEWFTEC website."
+  currentPage="/about-site"
+>
+  <section class="about-site">
+    <div class="container">
+      <h1>About This Site</h1>
+      <p class="intro">This website is a demonstration of modern cloud-native development practices. We built it using the same principles we recommend to our clients.</p>
+
+      <div class="tech-grid">
+        {techStack.map(tech => (
+          <div class="tech-card">
+            <span class="tech-icon">{tech.icon}</span>
+            <h3>{tech.title}</h3>
+            <p>{tech.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="resources-section">
+        <h2>Cloud Resources</h2>
+        <p>Learn more about the cloud services powering modern web applications:</p>
+        <ul class="resources-list">
+          {cloudResources.map(resource => (
+            <li>
+              <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                {resource.name}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+              <span class="resource-desc">{resource.description}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="architecture-note">
+        <h2>Architecture Highlights</h2>
+        <ul>
+          <li><strong>Static Generation:</strong> Pages pre-rendered at build time for instant loading</li>
+          <li><strong>Component Islands:</strong> Interactive features hydrate independently</li>
+          <li><strong>Global CDN:</strong> Content served from edge locations worldwide</li>
+          <li><strong>Zero Config SSL:</strong> Automatic HTTPS certificates</li>
+          <li><strong>Preview Environments:</strong> Every PR gets its own preview URL</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-site {
+    padding: 60px 0 80px;
+  }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 20px;
+  }
+
+  .intro {
+    font-size: 18px;
+    color: #4a5568;
+    max-width: 700px;
+    margin-bottom: 50px;
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+  }
+
+  .tech-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+
+  .tech-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .tech-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .tech-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 10px;
+  }
+
+  .tech-card p {
+    font-size: 15px;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  .resources-section, .architecture-note {
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 15px;
+  }
+
+  .resources-section > p {
+    color: #4a5568;
+    margin-bottom: 20px;
+  }
+
+  .resources-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .resources-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .resources-list li:last-child {
+    border-bottom: none;
+  }
+
+  .resources-list a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+  }
+
+  .resources-list a:hover {
+    color: #2563eb;
+  }
+
+  .resource-desc {
+    display: block;
+    font-size: 14px;
+    color: #718096;
+    margin-top: 5px;
+  }
+
+  .architecture-note ul {
+    padding-left: 20px;
+  }
+
+  .architecture-note li {
+    padding: 8px 0;
+    color: #4a5568;
+  }
+
+  .architecture-note strong {
+    color: #1a202c;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 32px;
+    }
+
+    .resources-section, .architecture-note {
+      padding: 25px;
+    }
+  }
+</style>

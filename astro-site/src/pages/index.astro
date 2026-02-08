@@ -1,0 +1,295 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import ROICalculator from '../components/ROICalculator.astro';
+import AIAgentWidget from '../components/AIAgentWidget.astro';
+
+// API endpoint for AI chat widget
+const apiEndpoint = import.meta.env.DEV 
+  ? 'http://localhost:7073/api/chat' 
+  : '/api/chat';
+
+const services = [
+  {
+    title: 'Cloud Migration',
+    description: 'Move to the cloud with confidence. We handle assessment, planning, and execution for seamless transitions.',
+    icon: '☁️'
+  },
+  {
+    title: 'Generative AI & Automation',
+    description: 'Harness the power of GenAI and intelligent automation to streamline operations and delight customers.',
+    icon: '🤖'
+  },
+  {
+    title: 'Application Modernization',
+    description: 'Build scalable, cloud-native apps with serverless, containers, and microservices architecture.',
+    icon: '⚡'
+  }
+];
+---
+
+<BaseLayout 
+  title="NEWFTEC | Technology Consulting" 
+  currentPage="/"
+>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Modern Technology for Growing Businesses</h1>
+      <p>We help small and medium businesses compete with enterprise-level technology—without the complexity or cost.</p>
+      <p class="tagline">Cloud-native. AI-powered. Built for you.</p>
+      <div class="hero-ctas">
+        <a href="/services" class="cta-button primary">View Services</a>
+        <a href="/case-studies" class="cta-button secondary">See Results</a>
+      </div>
+    </div>
+    <img 
+      src="/assets/images/NewftecAi3.png" 
+      alt="NEWFTEC Technology Solutions" 
+      class="hero-image"
+      loading="eager"
+    />
+  </section>
+
+  <TrustBadges />
+
+  <section class="services">
+    <div class="container">
+      <h2>What We Do</h2>
+      <p class="section-subtitle">Cloud and AI services tailored for small and medium businesses</p>
+      <div class="services-grid">
+        {services.map(service => (
+          <ServiceCard 
+            title={service.title} 
+            description={service.description}
+            icon={service.icon}
+          />
+        ))}
+      </div>
+      <a href="/services" class="view-all">View All Services →</a>
+    </div>
+  </section>
+
+  <section class="roi-section">
+    <div class="container">
+      <div class="roi-grid">
+        <div class="roi-content">
+          <h2>See What the Cloud Can Save You</h2>
+          <p>Most businesses save 30-40% on infrastructure costs after migrating to the cloud, plus significant time savings through automation.</p>
+          <ul class="roi-benefits">
+            <li>Pay only for what you use</li>
+            <li>Eliminate hardware maintenance</li>
+            <li>Scale instantly to meet demand</li>
+            <li>Enterprise security included</li>
+          </ul>
+        </div>
+        <ROICalculator />
+      </div>
+    </div>
+  </section>
+
+  <section class="ai-preview">
+    <div class="container">
+      <div class="ai-grid">
+        <div class="ai-content">
+          <h2>Try Our AI Assistant</h2>
+          <p>See GenAI in action. Our assistant can answer questions about our services, provide technical guidance, and help you explore how we can help your business.</p>
+          <a href="/chat" class="cta-button secondary">Full Screen Chat →</a>
+        </div>
+        <AIAgentWidget height="350px" apiEndpoint={apiEndpoint} />
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final">
+    <div class="container">
+      <h2>Ready to Transform Your Business?</h2>
+      <p>Let's discuss how modern cloud and AI solutions can help you compete, save costs, and scale.</p>
+      <a href="/contact" class="cta-button primary large">Schedule a Free Consultation</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tagline {
+    font-style: italic;
+    color: #3b82f6;
+    font-weight: 600;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+  }
+
+  .cta-button.secondary:hover {
+    background: #3b82f6;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: #4a5568;
+    font-size: 18px;
+    margin-top: -30px;
+    margin-bottom: 40px;
+  }
+
+  .view-all {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    color: #3b82f6;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .view-all:hover {
+    text-decoration: underline;
+  }
+
+  .roi-section {
+    padding: 80px 0;
+    background: #f9fafb;
+  }
+
+  .roi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .roi-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 20px;
+  }
+
+  .roi-content p {
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 25px;
+  }
+
+  .roi-benefits {
+    list-style: none;
+    padding: 0;
+  }
+
+  .roi-benefits li {
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
+    color: #4a5568;
+  }
+
+  .roi-benefits li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  .ai-preview {
+    padding: 80px 0;
+  }
+
+  .ai-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .ai-content h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 20px;
+  }
+
+  .ai-content p {
+    font-size: 18px;
+    color: #4a5568;
+    margin-bottom: 25px;
+  }
+
+  .cta-final {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    color: #fff;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .cta-final h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .cta-final p {
+    font-size: 18px;
+    color: #a0aec0;
+    margin-bottom: 30px;
+  }
+
+  .cta-button.large {
+    padding: 16px 32px;
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-ctas {
+      flex-direction: column;
+    }
+
+    .roi-grid, .ai-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .roi-content h2, .ai-content h2, .cta-final h2 {
+      font-size: 28px;
+    }
+  }
+
+  /* Dark mode overrides */
+  :global(html.dark) .ai-content h2 {
+    color: #f1f5f9;
+  }
+
+  :global(html.dark) .ai-content p {
+    color: #cbd5e1;
+  }
+
+  :global(html.dark) .roi-content h2 {
+    color: #f1f5f9;
+  }
+
+  :global(html.dark) .roi-content p,
+  :global(html.dark) .roi-content li {
+    color: #cbd5e1;
+  }
+
+  :global(html.dark) .roi-section {
+    background: var(--bg-primary);
+  }
+
+  :global(html.dark) .ai-preview {
+    background: var(--bg-secondary);
+  }
+
+  :global(html.dark) .section-subtitle {
+    color: #94a3b8;
+  }
+</style>

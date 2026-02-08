@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+
+const testimonials = [
+  {
+    name: 'Kelly Sikkema',
+    title: 'Owner',
+    company: 'Creative Design Studio',
+    description: 'Working with this team has been a game changer for my business. Their expertise and dedication to our projects have resulted in a significant increase in our online presence and customer engagement.',
+    image: '/assets/images/testimonials-1.png',
+    featured: false
+  },
+  {
+    name: 'Ethan Hoover',
+    title: 'CEO',
+    company: 'Tech Solutions Inc.',
+    description: 'Their innovative solutions and creative approach have greatly improved our business operations. We\'ve seen a substantial increase in our productivity and efficiency.',
+    image: '/assets/images/testimonials-2.png',
+    featured: false
+  },
+  {
+    name: 'Joseph Pearson',
+    title: 'Founder',
+    company: 'Pearson\'s Bakery',
+    description: 'Their team helped us establish an online presence and reach more customers. We\'ve seen a significant increase in sales since we started working with them. Their customer service is top-notch and they always go the extra mile to ensure we\'re satisfied.',
+    image: '/assets/images/testimonials-3.png',
+    featured: true
+  },
+  {
+    name: 'Daniel Lincoln',
+    title: 'Operations Director',
+    company: 'Lincoln Manufacturing',
+    description: 'NEWFTEC transformed our legacy systems into a modern cloud infrastructure. The migration was seamless and we\'ve reduced our IT costs by 40% while improving reliability.',
+    image: '/assets/images/testimonials-4.png',
+    featured: false
+  }
+];
+---
+
+<BaseLayout 
+  title="Testimonials | NEWFTEC"
+  description="See what our clients say about NEWFTEC's technology consulting services."
+  currentPage="/testimonials"
+>
+  <section class="testimonials-page">
+    <div class="container">
+      <div class="heading">
+        <h1>What Our Clients Say</h1>
+        <p>Real results from real businesses we've helped transform.</p>
+      </div>
+      <div class="testimonials-grid">
+        {testimonials.map(t => (
+          <TestimonialCard 
+            name={t.name}
+            title={t.title}
+            company={t.company}
+            description={t.description}
+            image={t.image}
+            featured={t.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .testimonials-page {
+    padding: 60px 0 80px;
+    background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);
+  }
+
+  .heading {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .heading h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 15px;
+  }
+
+  .heading p {
+    font-size: 18px;
+    color: #4a5568;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .heading h1 {
+      font-size: 32px;
+    }
+  }
+</style>

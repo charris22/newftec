@@ -1,0 +1,80 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = '' } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header>
+  <div class="container">
+    <div class="header-brand">
+      <div class="logo">
+        <a href="/">
+          <img src="/assets/icons/newf-icon-washout.svg" alt="NEWFTEC Logo" />
+        </a>
+      </div>
+      <span class="brand-name">NEWFTEC, LLC</span>
+    </div>
+    <nav class="desktop-menu">
+      <ul>
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.href} 
+              class:list={[{ active: currentPage === link.href }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <ThemeToggle />
+    </nav>
+    <div class="mobile-controls">
+      <ThemeToggle />
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-menu">
+      <ul class="mobile-nav">
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.href}
+              class:list={[{ active: currentPage === link.href }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+  
+  menuToggle?.addEventListener('click', () => {
+    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+    mobileNav?.classList.toggle('active');
+  });
+</script>

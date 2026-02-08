@@ -1,0 +1,100 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  company?: string;
+  description: string;
+  image: string;
+  featured?: boolean;
+}
+
+const { name, title, company, description, image, featured = false } = Astro.props;
+---
+
+<div class:list={['testimonial-card', { featured }]}>
+  <img src={image} alt={`${name} profile`} class="testimonial-image" loading="lazy" />
+  <div class="testimonial-content">
+    <p class="testimonial-text">"{description}"</p>
+    <div class="testimonial-author">
+      <p class="name">{name}</p>
+      <p class="title">{title}{company && `, ${company}`}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .testimonial-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .testimonial-card.featured {
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    color: #fff;
+    grid-column: span 2;
+  }
+
+  .testimonial-image {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #4a5568;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .featured .testimonial-text {
+    color: #e5e7eb;
+    font-size: 18px;
+  }
+
+  .testimonial-author {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 15px;
+  }
+
+  .featured .testimonial-author {
+    border-top-color: #4a5568;
+  }
+
+  .name {
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0 0 4px;
+  }
+
+  .featured .name {
+    color: #fff;
+  }
+
+  .title {
+    font-size: 14px;
+    color: #718096;
+    margin: 0;
+  }
+
+  .featured .title {
+    color: #a0aec0;
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-card.featured {
+      grid-column: span 1;
+    }
+  }
+</style>
