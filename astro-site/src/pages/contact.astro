@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const contactMethods = [
+  {
+    icon: '📧',
+    title: 'Email Us',
+    description: 'Get a response within 24 hours',
+    action: 'info@newftec.com'
+  },
+  {
+    icon: '💬',
+    title: 'Chat with AI',
+    description: 'Instant answers to common questions',
+    action: '/chat',
+    isLink: true
+  },
+  {
+    icon: '📅',
+    title: 'Schedule a Call',
+    description: 'Book a free 30-minute consultation',
+    action: 'Fill out the form below'
+  }
+];
+---
+
+<BaseLayout 
+  title="Contact Us | NEWFTEC"
+  description="Contact NEWFTEC for advanced, cloud-native technology solutions tailored to your business needs."
+  currentPage="/contact"
+>
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="contact-hero-bg"></div>
+    <div class="container contact-hero-content">
+      <span class="section-label">Get In Touch</span>
+      <h1>Let's Build Something <em>Great</em> Together</h1>
+      <p class="hero-subtitle">Whether you're ready to start a project or just exploring options, we're here to help. No pressure, no jargon—just honest conversation about your goals.</p>
+      
+      <div class="contact-methods">
+        {contactMethods.map(method => (
+          <div class="contact-method">
+            <span class="contact-method-icon">{method.icon}</span>
+            <h3>{method.title}</h3>
+            <p>{method.description}</p>
+            {method.isLink ? (
+              <a href={method.action} class="contact-method-action">Start Chat →</a>
+            ) : (
+              <span class="contact-method-action">{method.action}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="contact-form-section">
+    <div class="contact-form-wrapper">
+      <div class="form-header">
+        <h2>Send Us a Message</h2>
+        <p>Fill out the form below and we'll get back to you within one business day.</p>
+      </div>
+      <div class="contact-form-container">
+        <iframe 
+          src="https://forms.office.com/Pages/ResponsePage.aspx?id=h6zyyL2qckeVycb-6Lcl4LvCWP7XFYtOoqgYYZh1gQ5UN1E0UzBDODBEWUxLT1hHRVNMRFZYSjVTUC4u&embed=true" 
+          frameborder="0" 
+          allowfullscreen
+          title="Contact Form"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="contact-trust">
+    <div class="container">
+      <div class="trust-items">
+        <div class="trust-item">
+          <span class="trust-icon">🔒</span>
+          <span>Your data is secure and never shared</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">⚡</span>
+          <span>Response within 24 hours guaranteed</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">🤝</span>
+          <span>No obligation, no pressure</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

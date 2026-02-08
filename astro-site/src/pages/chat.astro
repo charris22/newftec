@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AIAgentWidget from '../components/AIAgentWidget.astro';
+
+// API endpoint - uses Azure Static Web Apps managed API in production
+const apiEndpoint = import.meta.env.DEV 
+  ? 'http://localhost:7073/api/chat' 
+  : '/api/chat';
+---
+
+<BaseLayout 
+  title="AI Assistant | NEWFTEC"
+  description="Chat with our AI assistant powered by generative AI."
+  currentPage="/chat"
+>
+  <section class="chat-page">
+    <div class="container">
+      <div class="chat-header">
+        <h1>AI Assistant</h1>
+        <p>Chat with our AI-powered assistant to learn about our services, get technical guidance, or explore how we can help your business.</p>
+      </div>
+      <div class="chat-container">
+        <AIAgentWidget 
+          title="NEWFTEC AI Assistant"
+          placeholder="Ask about our services, cloud solutions, or AI capabilities..."
+          apiEndpoint={apiEndpoint}
+          height="550px"
+          showHeader={true}
+        />
+      </div>
+      <div class="chat-info">
+        <p><strong>Powered by Azure OpenAI</strong> — This assistant uses advanced language models to provide intelligent responses about our services and capabilities.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .chat-page {
+    padding: 60px 0 80px;
+    min-height: 80vh;
+  }
+
+  .chat-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .chat-header h1 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 15px;
+  }
+
+  .chat-header p {
+    font-size: 18px;
+    color: #4a5568;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .chat-info {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9fafb;
+    border-radius: 8px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .chat-info p {
+    font-size: 14px;
+    color: #718096;
+    margin: 0;
+  }
+
+  .chat-info strong {
+    color: #1a202c;
+  }
+
+  @media (max-width: 768px) {
+    .chat-header h1 {
+      font-size: 32px;
+    }
+  }
+</style>

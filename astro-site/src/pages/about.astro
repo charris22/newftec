@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stats = [
+  { number: '10+', label: 'Years Experience' },
+  { number: '50+', label: 'Projects Delivered' },
+  { number: '98%', label: 'Client Satisfaction' },
+  { number: '24/7', label: 'Support Available' }
+];
+
+const coreValues = [
+  {
+    title: 'Powerful',
+    description: 'We harness enterprise-grade technology—big data, cloud infrastructure, and AI—to give small businesses the same competitive advantages as industry giants.',
+    icon: '⚡',
+    example: 'A regional retailer increased sales 40% using our analytics platform'
+  },
+  {
+    title: 'Simple',
+    description: 'Complex technology shouldn\'t mean complex implementation. We design solutions that are intuitive to use and easy to maintain, with clear documentation and training.',
+    icon: '🎯',
+    example: 'Average client onboarding: 2 weeks, not months'
+  },
+  {
+    title: 'Durable',
+    description: 'We build for the long term. Our solutions use proven, stable technologies with clear upgrade paths, so your investment keeps paying dividends for years.',
+    icon: '🛡️',
+    example: '95% of our 2020 deployments still running strong'
+  }
+];
+
+const differentiators = [
+  {
+    title: 'Small Business Focus',
+    description: 'Unlike enterprise consultants who treat SMBs as an afterthought, we\'ve built our entire practice around your unique challenges and budget constraints.',
+    icon: '🏪'
+  },
+  {
+    title: 'Fixed-Price Projects',
+    description: 'No surprise invoices. We quote fixed prices for defined scopes, so you know exactly what you\'re paying before we start.',
+    icon: '💰'
+  },
+  {
+    title: 'Knowledge Transfer',
+    description: 'We don\'t create dependencies. Every project includes documentation and training so your team can maintain and extend what we build.',
+    icon: '📚'
+  },
+  {
+    title: 'Modern Tech Stack',
+    description: 'GenAI, cloud-native architecture, serverless computing—we bring cutting-edge technology within reach of growing businesses.',
+    icon: '🚀'
+  }
+];
+---
+
+<BaseLayout 
+  title="About Us | NEWFTEC"
+  description="Learn about NEWFTEC's mission to transform businesses with powerful, simple, durable technology solutions, including Generative AI for small business growth."
+  currentPage="/about"
+>
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="about-hero-overlay"></div>
+    <div class="container about-hero-content">
+      <h1>Technology That Works <em>For</em> You</h1>
+      <p class="hero-subtitle">We help small and medium businesses compete with enterprise-grade technology—without the enterprise complexity or cost.</p>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image">
+          <img src="/assets/images/brucethenewf.jpg" alt="Bruce the Newfoundland dog - NEWFTEC mascot" loading="lazy" />
+          <div class="story-image-caption">Bruce, our namesake and chief morale officer</div>
+        </div>
+        <div class="story-content">
+          <span class="section-label">Our Story</span>
+          <h2>Why "NEWFTEC"?</h2>
+          <p>NEWFTEC is named after the Newfoundland dog—a breed known for being <strong>powerful</strong>, <strong>gentle</strong>, and <strong>incredibly loyal</strong>. These are the same qualities we bring to every client relationship.</p>
+          <p>Founded by technologists who spent years watching small businesses get overcharged for overcomplicated solutions, NEWFTEC was built on a simple idea: <em>great technology should be accessible to everyone</em>.</p>
+          <p>We've seen too many promising businesses struggle with technology vendors who speak in jargon, deliver late, and disappear when problems arise. We do things differently.</p>
+          <p>Our team combines deep technical expertise with a genuine passion for helping businesses grow. We measure our success by yours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map(stat => (
+          <div class="stat-item">
+            <span class="stat-number">{stat.number}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Values Section -->
+  <section class="values-section">
+    <div class="container">
+      <span class="section-label">What We Stand For</span>
+      <h2>Our Core Values</h2>
+      <p class="section-intro">Every decision we make is guided by three principles—the same qualities that define our Newfoundland namesake.</p>
+      
+      <div class="values-grid-modern">
+        {coreValues.map(value => (
+          <div class="value-card-modern">
+            <span class="value-icon">{value.icon}</span>
+            <h3>{value.title}</h3>
+            <p>{value.description}</p>
+            <div class="value-example">
+              <strong>In practice:</strong> {value.example}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-us-section">
+    <div class="container">
+      <span class="section-label">The NEWFTEC Difference</span>
+      <h2>Why Choose Us?</h2>
+      
+      <div class="differentiators-grid">
+        {differentiators.map(item => (
+          <div class="differentiator-card">
+            <span class="differentiator-icon">{item.icon}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GenAI Section -->
+  <section class="genai-section">
+    <div class="container">
+      <div class="genai-content">
+        <span class="section-label">Our Specialty</span>
+        <h2>Generative AI for Growing Businesses</h2>
+        <p>While others are still figuring out AI, we're already delivering real results for our clients. Our GenAI solutions help you:</p>
+        
+        <div class="genai-grid">
+          <div class="genai-item">
+            <span class="genai-icon">💬</span>
+            <h4>Engage Customers 24/7</h4>
+            <p>AI-powered chatbots that actually help—answering questions, booking appointments, and qualifying leads while you sleep.</p>
+          </div>
+          <div class="genai-item">
+            <span class="genai-icon">✍️</span>
+            <h4>Create Content Faster</h4>
+            <p>Generate marketing copy, social posts, and reports in minutes instead of hours, with your brand voice built in.</p>
+          </div>
+          <div class="genai-item">
+            <span class="genai-icon">📊</span>
+            <h4>Uncover Hidden Insights</h4>
+            <p>AI-powered analytics that spot trends and opportunities in your data that spreadsheets would never reveal.</p>
+          </div>
+          <div class="genai-item">
+            <span class="genai-icon">⚙️</span>
+            <h4>Automate the Mundane</h4>
+            <p>Let AI handle repetitive tasks—data entry, scheduling, inventory—so your team can focus on what matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="about-cta-section">
+    <div class="container">
+      <div class="about-cta-content">
+        <h2>Ready to Transform Your Business?</h2>
+        <p>Let's talk about how NEWFTEC can help you compete—and win—with technology that actually works for you.</p>
+        <div class="about-cta-buttons">
+          <a href="/contact" class="cta-button">Schedule a Consultation</a>
+          <a href="/services" class="cta-button-secondary">Explore Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

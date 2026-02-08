@@ -1,0 +1,338 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const caseStudies = [
+  {
+    id: 'retail-ai',
+    client: 'Regional Retail Chain',
+    industry: 'Retail',
+    challenge: 'Manual inventory management causing stockouts and overstock across 15 locations',
+    solution: 'Implemented cloud-based inventory forecasting using machine learning and real-time BI dashboards',
+    results: [
+      { metric: '35%', label: 'Reduction in stockouts' },
+      { metric: '$180K', label: 'Annual savings' },
+      { metric: '4 weeks', label: 'Implementation time' }
+    ],
+    technologies: ['Machine Learning', 'Data Warehouse', 'BI Dashboards', 'Serverless Functions'],
+    quote: 'NEWFTEC helped us compete with big-box retailers using AI we thought was out of reach for a company our size.',
+    image: '/assets/images/case-retail.jpg'
+  },
+  {
+    id: 'manufacturing-iot',
+    client: 'Precision Manufacturing Co.',
+    industry: 'Manufacturing',
+    challenge: 'No visibility into equipment health leading to unexpected downtime and maintenance costs',
+    solution: 'Deployed IoT sensors connected to a cloud platform with predictive maintenance models',
+    results: [
+      { metric: '60%', label: 'Reduction in unplanned downtime' },
+      { metric: '25%', label: 'Maintenance cost savings' },
+      { metric: '99.2%', label: 'Equipment uptime achieved' }
+    ],
+    technologies: ['IoT Platform', 'Stream Analytics', 'Digital Twins', 'BI Dashboards'],
+    quote: 'We went from reactive to predictive maintenance in just two months. The ROI was immediate.',
+    image: '/assets/images/case-manufacturing.jpg'
+  },
+  {
+    id: 'legal-ai',
+    client: 'Regional Law Firm',
+    industry: 'Legal Services',
+    challenge: 'Paralegals spending 40+ hours weekly on document review and contract analysis',
+    solution: 'Built custom AI document processing solution using GenAI and intelligent document understanding',
+    results: [
+      { metric: '75%', label: 'Time savings on document review' },
+      { metric: '3x', label: 'More cases handled' },
+      { metric: '$250K', label: 'Annual labor savings' }
+    ],
+    technologies: ['Large Language Models', 'Document Intelligence', 'Vector Search', 'Cloud Storage'],
+    quote: 'Our team now focuses on high-value legal work instead of document processing. Game changer.',
+    image: '/assets/images/case-legal.jpg'
+  }
+];
+---
+
+<BaseLayout 
+  title="Case Studies | NEWFTEC"
+  description="Real results from real businesses. See how NEWFTEC's cloud and AI solutions have transformed operations across industries."
+  currentPage="/case-studies"
+>
+  <section class="case-studies-hero">
+    <div class="container">
+      <h1>Client Success Stories</h1>
+      <p>Real results from businesses like yours. See how we've helped companies transform with cloud and AI.</p>
+    </div>
+  </section>
+
+  <section class="case-studies-list">
+    <div class="container">
+      {caseStudies.map((study, index) => (
+        <article class="case-study" id={study.id}>
+          <div class="case-study-header">
+            <span class="industry-badge">{study.industry}</span>
+            <h2>{study.client}</h2>
+          </div>
+          
+          <div class="case-study-content">
+            <div class="challenge-solution">
+              <div class="block">
+                <h3>The Challenge</h3>
+                <p>{study.challenge}</p>
+              </div>
+              <div class="block">
+                <h3>Our Solution</h3>
+                <p>{study.solution}</p>
+              </div>
+            </div>
+
+            <div class="results">
+              <h3>Results</h3>
+              <div class="metrics">
+                {study.results.map(result => (
+                  <div class="metric">
+                    <span class="metric-value">{result.metric}</span>
+                    <span class="metric-label">{result.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <blockquote class="quote">
+              "{study.quote}"
+            </blockquote>
+
+            <div class="tech-used">
+              <h4>Technologies Used</h4>
+              <div class="tech-tags">
+                {study.technologies.map(tech => (
+                  <span class="tech-tag">{tech}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Be Our Next Success Story?</h2>
+      <p>Let's discuss how we can achieve similar results for your business.</p>
+      <a href="/contact" class="cta-button">Start the Conversation</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .case-studies-hero {
+    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+    color: #fff;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .case-studies-hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .case-studies-hero p {
+    font-size: 20px;
+    color: #a7f3d0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .case-studies-list {
+    padding: 60px 0;
+  }
+
+  .case-study {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .case-study-header {
+    background: #f9fafb;
+    padding: 30px 40px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .industry-badge {
+    display: inline-block;
+    background: #3b82f6;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  .case-study-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a202c;
+    margin: 0;
+  }
+
+  .case-study-content {
+    padding: 40px;
+  }
+
+  .challenge-solution {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .block h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  .block p {
+    font-size: 17px;
+    color: #1a202c;
+    line-height: 1.6;
+  }
+
+  .results {
+    background: #f0fdf4;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+  }
+
+  .results h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #065f46;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+
+  .metrics {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .metric {
+    text-align: center;
+  }
+
+  .metric-value {
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    color: #047857;
+    line-height: 1;
+  }
+
+  .metric-label {
+    display: block;
+    font-size: 14px;
+    color: #065f46;
+    margin-top: 8px;
+  }
+
+  .quote {
+    font-size: 20px;
+    font-style: italic;
+    color: #4a5568;
+    border-left: 4px solid #3b82f6;
+    padding-left: 25px;
+    margin: 30px 0;
+    line-height: 1.6;
+  }
+
+  .tech-used h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tech-tag {
+    background: #f0f7ff;
+    color: #3b82f6;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .cta-section {
+    background: #1a202c;
+    color: #fff;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .cta-section p {
+    font-size: 18px;
+    color: #a0aec0;
+    margin-bottom: 30px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #10b981;
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background: #059669;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .case-studies-hero h1 {
+      font-size: 32px;
+    }
+
+    .case-study-header, .case-study-content {
+      padding: 25px;
+    }
+
+    .challenge-solution {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    .metrics {
+      justify-content: center;
+    }
+  }
+</style>
