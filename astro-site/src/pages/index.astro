@@ -33,23 +33,29 @@ const services = [
   title="NEWFTEC | Technology Consulting" 
   currentPage="/"
 >
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Modern Technology for Growing Businesses</h1>
-      <p>We help small and medium businesses compete with enterprise-level technology—without the complexity or cost.</p>
-      <p class="tagline">Cloud-native. AI-powered. Built for you.</p>
-      <div class="hero-ctas">
-        <a href="/services" class="cta-button primary">View Services</a>
-        <a href="/case-studies" class="cta-button secondary">See Results</a>
+  <div class="hero-wrapper">
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Cloud & AI Solutions for SMBs</p>
+        <h1>Modern Technology for <span class="gradient-text">Growing Businesses</span></h1>
+        <p>We help small and medium businesses compete with enterprise-level technology—without the complexity or cost.</p>
+        <p class="tagline">Cloud-native. AI-powered. Built for you.</p>
+        <div class="hero-ctas">
+          <a href="/services" class="cta-button primary">
+            View Services
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/case-studies" class="cta-button secondary">See Results</a>
+        </div>
       </div>
-    </div>
-    <img 
-      src="/assets/images/NewftecAi3.png" 
-      alt="NEWFTEC Technology Solutions" 
-      class="hero-image"
-      loading="eager"
-    />
-  </section>
+      <img 
+        src="/assets/images/NewftecAi3.png" 
+        alt="NEWFTEC Technology Solutions" 
+        class="hero-image"
+        loading="eager"
+      />
+    </section>
+  </div>
 
   <TrustBadges />
 
@@ -111,73 +117,122 @@ const services = [
 </BaseLayout>
 
 <style>
-  .tagline {
-    font-style: italic;
-    color: #3b82f6;
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 13px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-primary);
+    background: var(--accent-gradient-soft);
+    padding: 8px 16px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+
+  .gradient-text {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .tagline {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .tagline::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--accent-gradient);
+    margin-right: 12px;
+    vertical-align: middle;
   }
 
   .hero-ctas {
     display: flex;
-    gap: 15px;
-    margin-top: 10px;
-  }
-
-  .cta-button.secondary {
-    background: transparent;
-    border: 2px solid #3b82f6;
-    color: #3b82f6;
-  }
-
-  .cta-button.secondary:hover {
-    background: #3b82f6;
-    color: #fff;
+    gap: 16px;
+    margin-top: 32px;
   }
 
   .section-subtitle {
     text-align: center;
-    color: #4a5568;
+    color: var(--text-secondary);
     font-size: 18px;
     margin-top: -30px;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .view-all {
-    display: block;
-    text-align: center;
-    margin-top: 40px;
-    color: #3b82f6;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 48px auto 0;
+    color: var(--accent-primary);
     font-weight: 600;
     text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
 
   .view-all:hover {
-    text-decoration: underline;
+    background: var(--accent-gradient-soft);
+    transform: translateX(4px);
   }
 
+  /* ROI Section with mesh background */
   .roi-section {
-    padding: 80px 0;
-    background: var(--bg-tertiary);
+    position: relative;
+    padding: 100px 0;
+    background: var(--bg-mesh), var(--bg-tertiary);
+    overflow: hidden;
+  }
+
+  .roi-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    transform: translateY(-50%);
   }
 
   .roi-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 80px;
     align-items: center;
+    position: relative;
+    z-index: 1;
   }
 
   .roi-content h2 {
-    font-size: 36px;
-    font-weight: 700;
-    color: #1a202c;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-primary);
     margin-bottom: 20px;
+    letter-spacing: -0.02em;
   }
 
   .roi-content p {
     font-size: 18px;
-    color: #4a5568;
-    margin-bottom: 25px;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    line-height: 1.7;
   }
 
   .roi-benefits {
@@ -186,66 +241,144 @@ const services = [
   }
 
   .roi-benefits li {
-    padding: 10px 0;
-    padding-left: 30px;
+    padding: 12px 0;
+    padding-left: 36px;
     position: relative;
-    color: #4a5568;
+    color: var(--text-secondary);
+    font-size: 16px;
   }
 
   .roi-benefits li::before {
-    content: '✓';
+    content: '';
     position: absolute;
     left: 0;
-    color: #10b981;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .roi-benefits li::after {
+    content: '✓';
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 12px;
     font-weight: bold;
   }
 
+  /* AI Preview section */
   .ai-preview {
-    padding: 80px 0;
+    position: relative;
+    padding: 100px 0;
+    background: var(--bg-secondary);
+    overflow: hidden;
+  }
+
+  .ai-preview::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
   }
 
   .ai-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 80px;
     align-items: center;
+    position: relative;
+    z-index: 1;
   }
 
   .ai-content h2 {
-    font-size: 36px;
-    font-weight: 700;
-    color: #1a202c;
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-primary);
     margin-bottom: 20px;
+    letter-spacing: -0.02em;
   }
 
   .ai-content p {
     font-size: 18px;
-    color: #4a5568;
-    margin-bottom: 25px;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    line-height: 1.7;
   }
 
+  /* Final CTA with premium gradient */
   .cta-final {
-    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    position: relative;
+    background: linear-gradient(135deg, #0c1222 0%, #1a365d 50%, #0c1222 100%);
     color: #fff;
-    padding: 80px 0;
+    padding: 120px 0;
     text-align: center;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+
+  .cta-final::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  }
+
+  .cta-final .container {
+    position: relative;
+    z-index: 1;
   }
 
   .cta-final h2 {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 15px;
+    font-size: 44px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
   }
 
   .cta-final p {
-    font-size: 18px;
-    color: #a0aec0;
-    margin-bottom: 30px;
+    font-size: 19px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 36px;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .cta-button.large {
-    padding: 16px 32px;
-    font-size: 18px;
+    padding: 18px 36px;
+    font-size: 17px;
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+  }
+
+  .cta-button.large:hover {
+    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.5);
   }
 
   @media (max-width: 768px) {
@@ -255,34 +388,36 @@ const services = [
 
     .roi-grid, .ai-grid {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 48px;
     }
 
-    .roi-content h2, .ai-content h2, .cta-final h2 {
-      font-size: 28px;
+    .roi-content h2, .ai-content h2 {
+      font-size: 32px;
+    }
+
+    .cta-final h2 {
+      font-size: 32px;
+    }
+
+    .cta-final {
+      padding: 80px 0;
     }
   }
 
   /* Dark mode overrides */
-  :global(html.dark) .ai-content h2 {
-    color: #f1f5f9;
-  }
-
-  :global(html.dark) .ai-content p {
-    color: #cbd5e1;
-  }
-
+  :global(html.dark) .ai-content h2,
   :global(html.dark) .roi-content h2 {
-    color: #f1f5f9;
+    color: var(--text-primary);
   }
 
+  :global(html.dark) .ai-content p,
   :global(html.dark) .roi-content p,
   :global(html.dark) .roi-content li {
-    color: #cbd5e1;
+    color: var(--text-secondary);
   }
 
   :global(html.dark) .roi-section {
-    background: var(--bg-primary);
+    background: var(--bg-mesh), var(--bg-primary);
   }
 
   :global(html.dark) .ai-preview {
@@ -290,6 +425,10 @@ const services = [
   }
 
   :global(html.dark) .section-subtitle {
-    color: #94a3b8;
+    color: var(--text-secondary);
+  }
+
+  :global(html.dark) .hero-eyebrow {
+    color: var(--accent-light);
   }
 </style>

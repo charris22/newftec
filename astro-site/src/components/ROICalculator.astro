@@ -90,30 +90,44 @@ const { title = 'Estimate Your Cloud Savings' } = Astro.props;
 
 <style>
   .roi-calculator {
-    background: #fff;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .roi-calculator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-gradient);
   }
 
   h3 {
     font-size: 24px;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 25px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 28px;
     text-align: center;
+    letter-spacing: -0.02em;
   }
 
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 22px;
   }
 
   label {
     display: block;
     font-size: 14px;
-    font-weight: 500;
-    color: #4a5568;
-    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
   }
 
   .input-wrapper {
@@ -124,57 +138,63 @@ const { title = 'Estimate Your Cloud Savings' } = Astro.props;
 
   .currency {
     position: absolute;
-    left: 15px;
-    color: #718096;
-    font-weight: 500;
+    left: 16px;
+    color: var(--text-muted);
+    font-weight: 600;
   }
 
   input[type="number"] {
     width: 100%;
-    padding: 12px 15px;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
     font-size: 16px;
-    transition: border-color 0.2s;
+    font-weight: 500;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
   }
 
   .input-wrapper input {
-    padding-left: 35px;
+    padding-left: 38px;
   }
 
   input:focus {
     outline: none;
-    border-color: #3b82f6;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-bg);
   }
 
   .calculate-button {
     width: 100%;
-    padding: 14px;
-    background: #3b82f6;
+    padding: 16px;
+    background: var(--accent-gradient);
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 10px;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
   }
 
   .calculate-button:hover {
-    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
   }
 
   .results {
-    margin-top: 30px;
-    padding-top: 30px;
-    border-top: 2px solid #e5e7eb;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 2px solid var(--border-color);
   }
 
   .results h4 {
     font-size: 18px;
-    font-weight: 600;
-    color: #1a202c;
+    font-weight: 700;
+    color: var(--text-primary);
     margin-bottom: 20px;
     text-align: center;
   }
@@ -182,109 +202,126 @@ const { title = 'Estimate Your Cloud Savings' } = Astro.props;
   .savings-grid {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 14px;
   }
 
   .saving-item {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
-    background: #f9fafb;
-    border-radius: 8px;
+    align-items: center;
+    padding: 16px 18px;
+    background: var(--bg-tertiary);
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+  }
+
+  .saving-item:hover {
+    transform: translateX(4px);
   }
 
   .saving-item.total {
-    background: #f0fdf4;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.15) 100%);
     border: 2px solid #10b981;
   }
 
   .saving-label {
-    color: #4a5568;
-    font-weight: 500;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 14px;
   }
 
   .saving-value {
-    font-weight: 700;
-    color: #1a202c;
+    font-weight: 800;
+    color: var(--text-primary);
+    font-size: 16px;
   }
 
   .saving-item.total .saving-value {
-    color: #047857;
-    font-size: 20px;
+    color: #059669;
+    font-size: 22px;
   }
 
   .disclaimer {
     font-size: 12px;
-    color: #718096;
+    color: var(--text-muted);
     text-align: center;
-    margin-top: 20px;
+    margin-top: 22px;
+    font-style: italic;
   }
 
   .cta-link {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
     text-align: center;
-    color: #3b82f6;
+    color: var(--accent-primary);
     font-weight: 600;
     text-decoration: none;
-    margin-top: 15px;
-    transition: color 0.2s;
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
 
   .cta-link:hover {
-    color: #2563eb;
+    background: var(--accent-gradient-soft);
   }
 
   /* Dark mode styles */
   :global(html.dark) .roi-calculator {
-    background: #1e293b;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    background: var(--bg-card);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-color);
   }
 
   :global(html.dark) h3 {
-    color: #f1f5f9;
+    color: var(--text-primary);
   }
 
   :global(html.dark) label {
-    color: #cbd5e1;
+    color: var(--text-secondary);
   }
 
   :global(html.dark) .currency {
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 
   :global(html.dark) input[type="number"] {
-    background: #334155;
-    border-color: #475569;
-    color: #f1f5f9;
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
   }
 
   :global(html.dark) input:focus {
-    border-color: #3b82f6;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-bg);
   }
 
   :global(html.dark) .results {
-    border-top-color: #475569;
+    border-top-color: var(--border-color);
   }
 
   :global(html.dark) .results h4 {
-    color: #f1f5f9;
+    color: var(--text-primary);
   }
 
   :global(html.dark) .saving-item {
-    background: #334155;
+    background: var(--bg-tertiary);
   }
 
   :global(html.dark) .saving-item.total {
-    background: #064e3b;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.2) 100%);
     border-color: #10b981;
   }
 
   :global(html.dark) .saving-label {
-    color: #cbd5e1;
+    color: var(--text-secondary);
   }
 
   :global(html.dark) .saving-value {
-    color: #f1f5f9;
+    color: var(--text-primary);
   }
 
   :global(html.dark) .saving-item.total .saving-value {
@@ -292,6 +329,6 @@ const { title = 'Estimate Your Cloud Savings' } = Astro.props;
   }
 
   :global(html.dark) .disclaimer {
-    color: #94a3b8;
+    color: var(--text-muted);
   }
 </style>
