@@ -14,7 +14,7 @@ interface Props {
 }
 
 const { 
-  title = 'AI Assistant',
+  title = 'Newf',
   placeholder = 'Ask me anything about our services...',
   apiEndpoint = '/api/chat',
   height = '400px',
@@ -37,7 +37,11 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
   <div class="agent-container" style={`height: ${height};`}>
     <div class="agent-messages" id={`messages-${widgetId}`}>
       <div class="welcome-message">
-        <p>👋 Hi! I'm your AI assistant powered by generative AI.</p>
+        <div class="welcome-header">
+          <img src="/assets/icons/newf-icon.svg" alt="Newf" class="welcome-avatar" width="32" height="32" />
+          <span class="welcome-name">Newf</span>
+        </div>
+        <p>Hey there! I'm Newf, your AI assistant.</p>
         <p>I can help you with:</p>
         <ul>
           <li>Understanding our services</li>
@@ -87,7 +91,15 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
   function addMessage(text, isUser, isError = false) {
     const msg = document.createElement('div');
     msg.className = `message ${isUser ? 'user' : 'bot'}${isError ? ' error' : ''}`;
-    msg.innerHTML = `<p>${text}</p>`;
+    
+    if (isUser) {
+      msg.innerHTML = `<div class="message-bubble"><p>${text}</p></div>`;
+    } else {
+      msg.innerHTML = `
+        <img src="/assets/icons/newf-icon.svg" alt="Newf" class="bot-avatar" width="28" height="28" />
+        <div class="message-bubble"><p>${text}</p></div>
+      `;
+    }
     messages.appendChild(msg);
     messages.scrollTop = messages.scrollHeight;
   }
@@ -96,7 +108,10 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
     const indicator = document.createElement('div');
     indicator.className = 'message bot typing-indicator';
     indicator.id = `typing-${widgetId}`;
-    indicator.innerHTML = '<p><span></span><span></span><span></span></p>';
+    indicator.innerHTML = `
+      <img src="/assets/icons/newf-icon.svg" alt="Newf" class="bot-avatar" width="28" height="28" />
+      <div class="typing-dots"><span></span><span></span><span></span></div>
+    `;
     messages.appendChild(indicator);
     messages.scrollTop = messages.scrollHeight;
   }
@@ -186,17 +201,18 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
 
 <style>
   .agent-widget {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    background: var(--bg-card, #fff);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
     overflow: hidden;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    border: 1px solid var(--border-color, #e5e7eb);
   }
 
   .agent-header {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    background: var(--accent-gradient, linear-gradient(135deg, #3b82f6 0%, #2563eb 100%));
     color: #fff;
-    padding: 15px 20px;
+    padding: 16px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -240,99 +256,167 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
     flex: 1;
     overflow-y: auto;
     padding: 20px;
-    background: #f9fafb;
+    background: var(--bg-tertiary, #f9fafb);
+    display: flex;
+    flex-direction: column;
   }
 
   .welcome-message {
-    background: #fff;
+    background: var(--bg-card, #fff);
     padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .welcome-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+  }
+
+  .welcome-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px;
+    max-width: 32px;
+    border-radius: 50%;
+    background: var(--bg-tertiary, #f1f5f9);
+    padding: 4px;
+    object-fit: contain;
+  }
+
+  .welcome-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--text-primary, #1a202c);
   }
 
   .welcome-message p {
     margin: 0 0 10px;
-    color: #1a202c;
+    color: var(--text-primary, #1a202c);
   }
 
   .welcome-message ul {
     margin: 0;
     padding-left: 20px;
-    color: #4a5568;
+    color: var(--text-secondary, #4a5568);
   }
 
   .welcome-message li {
-    margin: 5px 0;
+    margin: 6px 0;
   }
 
-  .message {
-    margin: 10px 0;
+  /* Use :global() for dynamically created messages */
+  .agent-messages :global(.message) {
+    margin: 12px 0;
     max-width: 80%;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
   }
 
-  .message.user {
-    margin-left: auto;
+  .agent-messages :global(.message.user) {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
   }
 
-  .message p {
+  .agent-messages :global(.message.bot) {
+    align-self: flex-start;
+    flex-direction: row;
+  }
+
+  .agent-messages :global(.bot-avatar) {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px;
+    max-width: 28px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--bg-card, #fff);
+    padding: 3px;
+    box-shadow: var(--shadow-sm);
+    object-fit: contain;
+  }
+
+  .agent-messages :global(.message-bubble) {
+    max-width: 100%;
+  }
+
+  .agent-messages :global(.message-bubble p) {
     padding: 12px 16px;
-    border-radius: 12px;
+    border-radius: 18px;
     margin: 0;
     line-height: 1.5;
+    font-size: 14px;
+    word-wrap: break-word;
   }
 
-  .message.user p {
-    background: #3b82f6;
+  .agent-messages :global(.message.user .message-bubble p) {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
     color: #fff;
     border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
   }
 
-  .message.bot p {
-    background: #fff;
-    color: #1a202c;
-    border: 1px solid #e5e7eb;
+  .agent-messages :global(.message.bot .message-bubble p) {
+    background: var(--bg-card, #fff);
+    color: var(--text-primary, #1a202c);
+    border: 1px solid var(--border-color, #e5e7eb);
     border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
   .agent-input {
     display: flex;
-    padding: 15px;
-    background: #fff;
-    border-top: 1px solid #e5e7eb;
-    gap: 10px;
+    padding: 16px;
+    background: var(--bg-card, #fff);
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    gap: 12px;
   }
 
   .agent-input input {
     flex: 1;
-    padding: 12px 16px;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    padding: 14px 18px;
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 12px;
     font-size: 14px;
     outline: none;
-    transition: border-color 0.2s;
+    transition: all 0.2s ease;
+    background: var(--bg-secondary, #fff);
+    color: var(--text-primary, #1a202c);
   }
 
   .agent-input input:focus {
-    border-color: #3b82f6;
+    border-color: var(--accent-primary, #3b82f6);
+    box-shadow: 0 0 0 3px var(--accent-bg, rgba(59, 130, 246, 0.1));
   }
 
   .agent-input button {
-    background: #3b82f6;
+    background: var(--accent-gradient, linear-gradient(135deg, #3b82f6 0%, #2563eb 100%));
     color: #fff;
     border: none;
-    border-radius: 8px;
-    padding: 12px 16px;
+    border-radius: 12px;
+    padding: 14px 18px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
   }
 
   .agent-input button:hover {
-    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
   }
 
   .agent-input button:disabled {
     background: #94a3b8;
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
   }
 
   .agent-input button.loading {
@@ -363,48 +447,61 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
     cursor: not-allowed;
   }
 
-  /* Typing indicator */
-  .typing-indicator p {
+  /* Typing indicator - also dynamically created */
+  .agent-messages :global(.typing-indicator) {
+    margin-right: auto;
+    align-items: center;
+  }
+
+  .agent-messages :global(.typing-dots) {
     display: flex;
-    gap: 4px;
-    padding: 12px 16px;
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    gap: 5px;
+    padding: 14px 18px;
+    background: var(--bg-card, #fff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 18px;
     border-bottom-left-radius: 4px;
   }
 
-  .typing-indicator span {
+  .agent-messages :global(.typing-dots span) {
     width: 8px;
     height: 8px;
-    background: #94a3b8;
+    background: var(--accent-primary, #3b82f6);
     border-radius: 50%;
     animation: bounce 1.4s ease-in-out infinite;
   }
 
-  .typing-indicator span:nth-child(1) { animation-delay: 0s; }
-  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+  .agent-messages :global(.typing-dots span:nth-child(1)) { animation-delay: 0s; }
+  .agent-messages :global(.typing-dots span:nth-child(2)) { animation-delay: 0.2s; }
+  .agent-messages :global(.typing-dots span:nth-child(3)) { animation-delay: 0.4s; }
 
   @keyframes bounce {
-    0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-4px); }
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-5px); opacity: 1; }
   }
 
-  .message.error p {
+  .agent-messages :global(.message.error .message-bubble p) {
     background: #fef2f2;
     border-color: #fecaca;
     color: #991b1b;
   }
 
   /* Dark mode styles */
-  :global(html.dark) .agent-messages {
+  :global(html.dark) .agent-widget {
     background: #1e293b;
   }
 
+  :global(html.dark) .agent-header {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  }
+
+  :global(html.dark) .agent-messages {
+    background: #0f172a;
+  }
+
   :global(html.dark) .welcome-message {
-    background: #334155;
-    border-color: #475569;
+    background: #1e293b;
+    border-color: #334155;
   }
 
   :global(html.dark) .welcome-message p {
@@ -415,33 +512,60 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
     color: #cbd5e1;
   }
 
-  :global(html.dark) .message.bot p {
+  :global(html.dark) .agent-messages :global(.bot-avatar) {
     background: #334155;
-    border-color: #475569;
+  }
+
+  :global(html.dark) .agent-messages :global(.message.user .message-bubble p) {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  }
+
+  :global(html.dark) .agent-messages :global(.message.bot .message-bubble p) {
+    background: #1e293b;
+    border-color: #334155;
     color: #f1f5f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
   :global(html.dark) .agent-input {
     background: #1e293b;
-    border-top-color: #475569;
+    border-top-color: #334155;
   }
 
   :global(html.dark) .agent-input input {
-    background: #334155;
-    border-color: #475569;
+    background: #0f172a;
+    border-color: #334155;
     color: #f1f5f9;
   }
 
   :global(html.dark) .agent-input input::placeholder {
-    color: #94a3b8;
+    color: #64748b;
   }
 
-  :global(html.dark) .typing-indicator p {
+  :global(html.dark) .agent-input input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+
+  :global(html.dark) .agent-messages :global(.typing-dots) {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  :global(html.dark) .welcome-header {
+    border-bottom-color: #334155;
+  }
+
+  :global(html.dark) .welcome-avatar {
     background: #334155;
-    border-color: #475569;
   }
 
-  :global(html.dark) .message.error p {
+  :global(html.dark) .welcome-name {
+    color: #f1f5f9;
+  }
+
+  :global(html.dark) .agent-messages :global(.message.error .message-bubble p) {
     background: #450a0a;
     border-color: #7f1d1d;
     color: #fecaca;
