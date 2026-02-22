@@ -10,9 +10,68 @@ interface Props {
 
 const { 
   title, 
-  description = 'NEWFTEC provides advanced, cloud-native technology solutions to transform small and medium businesses through automation, analytics, and customer engagement.',
+  description = 'NEWFTEC provides cloud-native technology consulting and AI solutions for small and medium businesses in McKinney, Texas and the Dallas-Fort Worth area.',
   currentPage = ''
 } = Astro.props;
+
+// Local Business Schema
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "NEWFTEC, LLC",
+  "description": "Technology consulting specializing in cloud migration, AI automation, and application modernization for small and medium businesses.",
+  "url": "https://www.newftec.com",
+  "logo": "https://www.newftec.com/assets/icons/logo.png",
+  "image": "https://www.newftec.com/assets/images/NewftecAi3.png",
+  "telephone": "",
+  "email": "info@newftec.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "McKinney",
+    "addressRegion": "TX",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "33.1972",
+    "longitude": "-96.6397"
+  },
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "McKinney"
+    },
+    {
+      "@type": "City", 
+      "name": "Plano"
+    },
+    {
+      "@type": "City",
+      "name": "Allen"
+    },
+    {
+      "@type": "City",
+      "name": "Frisco"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Dallas-Fort Worth Metroplex"
+    }
+  ],
+  "serviceType": [
+    "Cloud Migration",
+    "AI Consulting",
+    "Application Modernization",
+    "DevOps",
+    "Data Analytics",
+    "Technology Consulting"
+  ],
+  "priceRange": "$$",
+  "openingHours": "Mo-Fr 09:00-17:00",
+  "sameAs": [
+    "https://www.linkedin.com/company/newftec"
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -21,11 +80,35 @@ const {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content={description}>
+  <meta name="keywords" content="technology consulting McKinney, cloud migration Dallas, AI consulting Texas, app modernization DFW, GenAI automation, small business technology">
+  <meta name="geo.region" content="US-TX">
+  <meta name="geo.placename" content="McKinney">
+  <meta name="geo.position" content="33.1972;-96.6397">
+  <meta name="ICBM" content="33.1972, -96.6397">
+  <link rel="canonical" href={`https://www.newftec.com${currentPage}`}>
   <title>{title}</title>
   <link rel="shortcut icon" href="/assets/icons/logo.png" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content="https://www.newftec.com/assets/images/NewftecAi3.png">
+  <meta property="og:url" content={`https://www.newftec.com${currentPage}`}>
+  <meta property="og:site_name" content="NEWFTEC">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content="https://www.newftec.com/assets/images/NewftecAi3.png">
+  
+  <!-- Local Business Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  
   <script is:inline>
     // Prevent FOUC - check theme before page renders
     (function() {
@@ -1275,14 +1358,17 @@ footer {
   gap: 40px;
 }
 
-.footer-links h4 {
+.footer-links h4,
+.footer-services h4,
+.footer-info h4 {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 15px;
   color: #fff;
 }
 
-.footer-links ul {
+.footer-links ul,
+.footer-services ul {
   list-style: none;
 }
 
@@ -1296,8 +1382,10 @@ footer {
   color: #fff;
 }
 
-.footer-links li {
+.footer-links li,
+.footer-services li {
   margin: 8px 0;
+  color: #a0aec0;
 }
 
 .footer-info {
@@ -1307,6 +1395,25 @@ footer {
 .footer-info p {
   margin: 8px 0;
   color: #a0aec0;
+}
+
+.footer-info .location {
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+.footer-info .service-area {
+  font-size: 13px;
+  color: #718096;
+  max-width: 250px;
+  line-height: 1.5;
+  margin-left: auto;
+}
+
+.footer-info .copyright {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #718096;
 }
 
 /* Responsive */
@@ -1345,6 +1452,11 @@ footer {
   
   .footer-info {
     text-align: center;
+  }
+
+  .footer-info .service-area {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
