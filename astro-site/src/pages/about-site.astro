@@ -1,234 +1,960 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const techStack = [
+const ownershipBenefits = [
   {
-    icon: '🚀',
-    title: 'Serverless Architecture',
-    description: 'Completely serverless deployment using static web hosting. No infrastructure management, automatic scaling, and global CDN distribution.'
+    icon: '🔓',
+    title: 'No Vendor Lock-in',
+    description: 'Your code lives in your GitHub repository. Switch hosting providers anytime. No proprietary formats or platforms holding your business hostage.'
   },
   {
-    icon: '🔄',
-    title: 'Modern DevOps',
-    description: 'Integrated with GitHub for version control and GitHub Actions for CI/CD pipelines. Every push triggers automated builds and deployments.'
+    icon: '💵',
+    title: 'Zero Subscription Fees',
+    description: 'Unlike Squarespace ($200+/yr), Wix ($180+/yr), or WordPress hosting—you pay only for cloud usage. This site costs under $5/month to run.'
   },
   {
-    icon: '💰',
-    title: 'Cost-Effective',
-    description: 'Running costs under $10/month thanks to serverless architecture and static web hosting free tiers.'
+    icon: '🛠️',
+    title: 'Full Customization',
+    description: 'No template limitations. Every pixel, every interaction, every feature built exactly to your specifications. Unlimited pages, forms, and integrations.'
   },
   {
-    icon: '⚡',
-    title: 'Astro Framework',
-    description: 'Built with Astro for optimal performance—ships zero JavaScript by default and only hydrates interactive components on demand.'
+    icon: '📦',
+    title: 'Complete Code Ownership',
+    description: 'Every line of code is yours. Modify it, extend it, hand it to another developer—no licensing restrictions or export limitations.'
   }
 ];
 
-const cloudResources = [
+const architectureFeatures = [
   {
-    name: 'Well-Architected Framework',
-    url: 'https://docs.microsoft.com/en-us/azure/architecture/framework/',
-    description: 'Best practices for building reliable, secure, and efficient cloud solutions.'
+    icon: '☁️',
+    title: 'Cloud-Native Design',
+    category: 'Infrastructure',
+    description: 'Built on Azure Static Web Apps with serverless Azure Functions. Automatically scales from zero to millions of users—you only pay for what you use.',
+    details: [
+      'Global CDN with 100+ edge locations',
+      'Automatic SSL certificates',
+      '99.95% SLA uptime guarantee',
+      'DDoS protection included'
+    ]
   },
   {
-    name: 'Static Web Apps',
-    url: 'https://docs.microsoft.com/en-us/azure/static-web-apps/overview',
-    description: 'Host modern web apps with integrated APIs, authentication, and global distribution.'
+    icon: '🤖',
+    title: 'AI Integration',
+    category: 'Intelligence',
+    description: 'The chatbot you see on this site is powered by Azure OpenAI. This same pattern can power customer service, document analysis, or intelligent workflows for your business.',
+    details: [
+      'GPT-4 powered conversations',
+      'Context-aware responses',
+      'Custom trained on your business',
+      'Secure API architecture'
+    ]
   },
   {
-    name: 'Cloud AI Services',
-    url: 'https://azure.microsoft.com/en-us/products/ai-services',
-    description: 'Build intelligent applications with pre-built AI capabilities and custom models.'
+    icon: '🔄',
+    title: 'Automated DevOps',
+    category: 'Operations',
+    description: 'Every code change triggers automatic testing, building, and deployment. No manual FTP uploads or risky deployments.',
+    details: [
+      'GitHub Actions CI/CD pipeline',
+      'Automatic preview environments for changes',
+      'Rollback capability in one click',
+      'Infrastructure as code'
+    ]
+  },
+  {
+    icon: '🧩',
+    title: 'Extensible Architecture',
+    category: 'Growth',
+    description: 'Component-based design means new features plug in cleanly. Need a customer portal? E-commerce? CRM integration? The foundation is ready.',
+    details: [
+      'Modular component system',
+      'API-first backend design',
+      'TypeScript for reliability',
+      'Database-ready architecture'
+    ]
   }
+];
+
+const costComparison = [
+  { solution: 'Squarespace Business', monthly: '$33', annual: '$396', features: 'Template-based, limited customization' },
+  { solution: 'WordPress + Premium Hosting', monthly: '$30+', annual: '$360+', features: 'Plugin dependencies, security updates' },
+  { solution: 'Custom Agency Build', monthly: '$0', annual: '$2,000+', features: 'High upfront, ongoing maintenance fees' },
+  { solution: 'This Site (Azure SWA)', monthly: '~$10', annual: '~$120', features: 'Full ownership, unlimited customization', highlight: true }
+];
+
+const techStack = [
+  { name: 'Astro', role: 'Framework', why: 'Ships minimal JavaScript, blazing fast load times' },
+  { name: 'Azure Static Web Apps', role: 'Hosting', why: 'Serverless, globally distributed, auto-scaling' },
+  { name: 'Azure Functions', role: 'Backend API', why: 'Pay-per-execution, no idle server costs' },
+  { name: 'Azure OpenAI', role: 'AI Services', why: 'Enterprise-grade AI with data privacy' },
+  { name: 'GitHub Actions', role: 'CI/CD', why: 'Automated deployments on every commit' },
+  { name: 'TypeScript', role: 'Language', why: 'Type safety prevents bugs before production' }
 ];
 ---
 
 <BaseLayout 
   title="About This Site | NEWFTEC"
-  description="Learn about the technology stack and architecture powering the NEWFTEC website."
+  description="See how this website demonstrates cloud-native architecture, AI integration, and modern DevOps—the same solutions we build for our clients."
   currentPage="/about-site"
 >
-  <section class="about-site">
+  <section class="hero-section">
     <div class="container">
-      <h1>About This Site</h1>
-      <p class="intro">This website is a demonstration of modern cloud-native development practices. We built it using the same principles we recommend to our clients.</p>
+      <span class="eyebrow">Live Demonstration</span>
+      <h1>This Site Is Your <span class="gradient-text">Proof of Concept</span></h1>
+      <p class="hero-intro">
+        You're not looking at a template. You're experiencing a fully custom, cloud-native web application 
+        built with the same technologies and practices we use for our clients. Every feature you see here 
+        could be part of your business solution.
+      </p>
+    </div>
+  </section>
 
-      <div class="tech-grid">
-        {techStack.map(tech => (
-          <div class="tech-card">
-            <span class="tech-icon">{tech.icon}</span>
-            <h3>{tech.title}</h3>
-            <p>{tech.description}</p>
+  <section class="ownership-section">
+    <div class="container">
+      <h2>You Own Everything. <span class="highlight">Forever.</span></h2>
+      <p class="section-intro">
+        The biggest difference between what we build and typical "website builders"? 
+        <strong>Complete ownership.</strong> No monthly platform fees. No feature restrictions. 
+        No begging a vendor to add functionality.
+      </p>
+      
+      <div class="benefits-grid">
+        {ownershipBenefits.map(benefit => (
+          <div class="benefit-card">
+            <span class="benefit-icon">{benefit.icon}</span>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.description}</p>
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <div class="resources-section">
-        <h2>Cloud Resources</h2>
-        <p>Learn more about the cloud services powering modern web applications:</p>
-        <ul class="resources-list">
-          {cloudResources.map(resource => (
-            <li>
-              <a href={resource.url} target="_blank" rel="noopener noreferrer">
-                {resource.name}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
-              <span class="resource-desc">{resource.description}</span>
-            </li>
-          ))}
-        </ul>
+  <section class="architecture-section">
+    <div class="container">
+      <h2>Enterprise Architecture, <span class="highlight">SMB Budget</span></h2>
+      <p class="section-intro">
+        The same cloud-native patterns that power Netflix, Spotify, and Airbnb—scaled appropriately 
+        for your business and your budget. Here's what's running under the hood:
+      </p>
+
+      <div class="architecture-grid">
+        {architectureFeatures.map(feature => (
+          <div class="architecture-card">
+            <div class="card-header">
+              <span class="feature-icon">{feature.icon}</span>
+              <span class="feature-category">{feature.category}</span>
+            </div>
+            <h3>{feature.title}</h3>
+            <p>{feature.description}</p>
+            <ul class="feature-details">
+              {feature.details.map(detail => (
+                <li>{detail}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cost-section">
+    <div class="container">
+      <h2>Real Numbers, <span class="highlight">No Surprises</span></h2>
+      <p class="section-intro">
+        We believe in transparency. Here's how cloud-native ownership compares to traditional solutions:
+      </p>
+
+      <div class="cost-table-wrapper">
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>Solution</th>
+              <th>Monthly</th>
+              <th>Annual</th>
+              <th>Trade-offs</th>
+            </tr>
+          </thead>
+          <tbody>
+            {costComparison.map(item => (
+              <tr class={item.highlight ? 'highlight-row' : ''}>
+                <td class="solution-name">{item.solution}</td>
+                <td>{item.monthly}</td>
+                <td>{item.annual}</td>
+                <td class="features">{item.features}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <div class="architecture-note">
-        <h2>Architecture Highlights</h2>
-        <ul>
-          <li><strong>Static Generation:</strong> Pages pre-rendered at build time for instant loading</li>
-          <li><strong>Component Islands:</strong> Interactive features hydrate independently</li>
-          <li><strong>Global CDN:</strong> Content served from edge locations worldwide</li>
-          <li><strong>Zero Config SSL:</strong> Automatic HTTPS certificates</li>
-          <li><strong>Preview Environments:</strong> Every PR gets its own preview URL</li>
-        </ul>
+      <div class="cost-note">
+        <strong>Note:</strong> The ~$10/month for this site includes hosting, CDN, SSL, and serverless API. 
+        AI chatbot usage adds ~$0.01-0.05 per conversation depending on length.
+      </div>
+    </div>
+  </section>
+
+  <section class="devops-section">
+    <div class="container">
+      <div class="devops-content">
+        <div class="devops-text">
+          <h2>Push Code. <span class="highlight">It Just Works.</span></h2>
+          <p>
+            When we make a change to this site, here's what happens automatically:
+          </p>
+          <ol class="devops-steps">
+            <li>
+              <span class="step-number">1</span>
+              <div>
+                <strong>Code Pushed to GitHub</strong>
+                <span>Version controlled, backed up, auditable</span>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">2</span>
+              <div>
+                <strong>GitHub Actions Triggered</strong>
+                <span>Automated build starts in seconds</span>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">3</span>
+              <div>
+                <strong>Type Checking &amp; Tests Run</strong>
+                <span>Catches errors before they reach production</span>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">4</span>
+              <div>
+                <strong>Site &amp; API Deployed</strong>
+                <span>Live globally in under 2 minutes</span>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">5</span>
+              <div>
+                <strong>Preview URLs for PRs</strong>
+                <span>Review changes before they go live</span>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="devops-visual">
+          <div class="pipeline-card">
+            <div class="pipeline-header">
+              <span class="status-dot"></span>
+              <span>Deployment Pipeline</span>
+            </div>
+            <div class="pipeline-stages">
+              <div class="stage completed">
+                <span class="stage-icon">✓</span>
+                <span>Build</span>
+              </div>
+              <div class="stage-connector"></div>
+              <div class="stage completed">
+                <span class="stage-icon">✓</span>
+                <span>Test</span>
+              </div>
+              <div class="stage-connector"></div>
+              <div class="stage completed">
+                <span class="stage-icon">✓</span>
+                <span>Deploy</span>
+              </div>
+              <div class="stage-connector"></div>
+              <div class="stage completed">
+                <span class="stage-icon">✓</span>
+                <span>Live</span>
+              </div>
+            </div>
+            <div class="pipeline-footer">
+              Last deployed: Today • Build time: 47s
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stack-section">
+    <div class="container">
+      <h2>The Technology Stack</h2>
+      <p class="section-intro">
+        Every technology choice serves a purpose. No bloat, no legacy baggage, no "because we've always done it that way."
+      </p>
+
+      <div class="stack-grid">
+        {techStack.map(tech => (
+          <div class="stack-item">
+            <div class="stack-name">{tech.name}</div>
+            <div class="stack-role">{tech.role}</div>
+            <div class="stack-why">{tech.why}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <h2>Ready to Own Your Technology?</h2>
+        <p>
+          Stop renting someone else's platform. Let's build something you truly own—cloud-native, 
+          AI-ready, and designed to grow with your business.
+        </p>
+        <div class="cta-buttons">
+          <a href="/contact" class="btn btn-primary">Start a Conversation</a>
+          <a href="/chat" class="btn btn-secondary">Try the AI Chat</a>
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .about-site {
-    padding: 60px 0 80px;
+  /* Hero Section */
+  .hero-section {
+    padding: 80px 0 60px;
+    background: var(--bg-mesh, linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%));
+  }
+
+  .eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    color: var(--accent-primary, #3b82f6);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 20px;
+    margin-bottom: 20px;
   }
 
   h1 {
-    font-size: 42px;
-    font-weight: 700;
-    color: #1a202c;
-    margin-bottom: 20px;
+    font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 800;
+    color: var(--text-primary, #1a202c);
+    line-height: 1.1;
+    margin-bottom: 24px;
   }
 
-  .intro {
-    font-size: 18px;
-    color: #4a5568;
-    max-width: 700px;
-    margin-bottom: 50px;
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-bottom: 60px;
-  }
-
-  .tech-card {
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-  }
-
-  .tech-card:hover {
-    transform: translateY(-4px);
-  }
-
-  .tech-icon {
-    font-size: 2.5rem;
-    display: block;
-    margin-bottom: 15px;
-  }
-
-  .tech-card h3 {
+  .hero-intro {
     font-size: 20px;
-    font-weight: 600;
-    color: #1a202c;
-    margin-bottom: 10px;
+    color: var(--text-secondary, #4a5568);
+    max-width: 720px;
+    line-height: 1.7;
   }
 
-  .tech-card p {
-    font-size: 15px;
-    color: #4a5568;
-    line-height: 1.6;
-  }
-
-  .resources-section, .architecture-note {
-    background: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  /* Section Styles */
+  section {
+    padding: 80px 0;
   }
 
   h2 {
-    font-size: 28px;
-    font-weight: 600;
-    color: #1a202c;
-    margin-bottom: 15px;
+    font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    color: var(--text-primary, #1a202c);
+    margin-bottom: 16px;
   }
 
-  .resources-section > p {
-    color: #4a5568;
+  .highlight {
+    color: var(--accent-primary, #3b82f6);
+  }
+
+  .section-intro {
+    font-size: 18px;
+    color: var(--text-secondary, #4a5568);
+    max-width: 700px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+
+  /* Ownership Section */
+  .ownership-section {
+    background: var(--bg-primary, #fff);
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+
+  .benefit-card {
+    background: var(--bg-card, #fff);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg, 0 20px 40px rgba(0, 0, 0, 0.1));
+  }
+
+  .benefit-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .benefit-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary, #1a202c);
+    margin-bottom: 10px;
+  }
+
+  .benefit-card p {
+    font-size: 15px;
+    color: var(--text-secondary, #4a5568);
+    line-height: 1.65;
+  }
+
+  /* Architecture Section */
+  .architecture-section {
+    background: var(--bg-secondary, #f9fafb);
+  }
+
+  .architecture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+  }
+
+  .architecture-card {
+    background: var(--bg-card, #fff);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.04));
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+  }
+
+  .feature-category {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-primary, #3b82f6);
+    background: rgba(59, 130, 246, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+
+  .architecture-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary, #1a202c);
+    margin-bottom: 12px;
+  }
+
+  .architecture-card > p {
+    font-size: 15px;
+    color: var(--text-secondary, #4a5568);
+    line-height: 1.65;
     margin-bottom: 20px;
   }
 
-  .resources-list {
+  .feature-details {
     list-style: none;
     padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    padding-top: 16px;
   }
 
-  .resources-list li {
-    padding: 15px 0;
-    border-bottom: 1px solid #e5e7eb;
+  .feature-details li {
+    font-size: 14px;
+    color: var(--text-secondary, #4a5568);
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
   }
 
-  .resources-list li:last-child {
+  .feature-details li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+  }
+
+  /* Cost Section */
+  .cost-section {
+    background: var(--bg-primary, #fff);
+  }
+
+  .cost-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 24px;
+  }
+
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card, #fff);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md, 0 4px 16px rgba(0, 0, 0, 0.08));
+  }
+
+  .cost-table th {
+    background: var(--bg-tertiary, #f1f5f9);
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-primary, #1a202c);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .cost-table td {
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    color: var(--text-secondary, #4a5568);
+    font-size: 15px;
+  }
+
+  .cost-table tr:last-child td {
     border-bottom: none;
   }
 
-  .resources-list a {
-    color: #3b82f6;
-    text-decoration: none;
+  .solution-name {
     font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s ease;
+    color: var(--text-primary, #1a202c);
   }
 
-  .resources-list a:hover {
-    color: #2563eb;
-  }
-
-  .resource-desc {
-    display: block;
+  .features {
     font-size: 14px;
-    color: #718096;
-    margin-top: 5px;
+    max-width: 280px;
   }
 
-  .architecture-note ul {
-    padding-left: 20px;
+  .highlight-row {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
   }
 
-  .architecture-note li {
-    padding: 8px 0;
-    color: #4a5568;
+  .highlight-row td {
+    color: var(--text-primary, #1a202c);
+    font-weight: 500;
   }
 
-  .architecture-note strong {
-    color: #1a202c;
+  .highlight-row .solution-name {
+    color: var(--accent-primary, #3b82f6);
+  }
+
+  .cost-note {
+    background: var(--bg-tertiary, #f1f5f9);
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-secondary, #4a5568);
+  }
+
+  /* DevOps Section */
+  .devops-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #fff;
+  }
+
+  .devops-section h2 {
+    color: #fff;
+  }
+
+  .devops-section .highlight {
+    color: #60a5fa;
+  }
+
+  .devops-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .devops-text p {
+    font-size: 17px;
+    color: #cbd5e1;
+    margin-bottom: 32px;
+  }
+
+  .devops-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .devops-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .devops-steps li:last-child {
+    border-bottom: none;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .devops-steps li div strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .devops-steps li div span {
+    font-size: 14px;
+    color: #94a3b8;
+  }
+
+  .pipeline-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 28px;
+    backdrop-filter: blur(10px);
+  }
+
+  .pipeline-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    font-weight: 600;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .pipeline-stages {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .stage-icon {
+    width: 40px;
+    height: 40px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .stage span:last-child {
+    font-size: 13px;
+    color: #94a3b8;
+  }
+
+  .stage-connector {
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, #10b981 0%, #10b981 100%);
+    margin: 0 8px;
+    margin-bottom: 24px;
+  }
+
+  .pipeline-footer {
+    font-size: 13px;
+    color: #64748b;
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Stack Section */
+  .stack-section {
+    background: var(--bg-secondary, #f9fafb);
+  }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 1200px) {
+    .stack-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   @media (max-width: 768px) {
-    h1 {
-      font-size: 32px;
+    .stack-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .stack-item {
+    background: var(--bg-card, #fff);
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .stack-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.08));
+  }
+
+  .stack-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary, #1a202c);
+    margin-bottom: 4px;
+  }
+
+  .stack-role {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-primary, #3b82f6);
+    margin-bottom: 12px;
+  }
+
+  .stack-why {
+    font-size: 14px;
+    color: var(--text-secondary, #4a5568);
+    line-height: 1.5;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    padding: 60px 0 100px;
+    background: var(--bg-primary, #fff);
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    padding: 60px;
+    border-radius: 24px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .cta-card h2 {
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  .cta-card p {
+    font-size: 18px;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary {
+    background: #fff;
+    color: #3b82f6;
+  }
+
+  .btn-primary:hover {
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* Dark Mode */
+  :global(html.dark) .hero-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+
+  :global(html.dark) h1,
+  :global(html.dark) h2,
+  :global(html.dark) .benefit-card h3,
+  :global(html.dark) .architecture-card h3,
+  :global(html.dark) .solution-name,
+  :global(html.dark) .stack-name {
+    color: #f1f5f9;
+  }
+
+  :global(html.dark) .hero-intro,
+  :global(html.dark) .section-intro,
+  :global(html.dark) .benefit-card p,
+  :global(html.dark) .architecture-card > p,
+  :global(html.dark) .feature-details li,
+  :global(html.dark) .stack-why {
+    color: #cbd5e1;
+  }
+
+  :global(html.dark) .ownership-section,
+  :global(html.dark) .cost-section,
+  :global(html.dark) .cta-section {
+    background: #0f172a;
+  }
+
+  :global(html.dark) .architecture-section,
+  :global(html.dark) .stack-section {
+    background: #1e293b;
+  }
+
+  :global(html.dark) .benefit-card,
+  :global(html.dark) .architecture-card,
+  :global(html.dark) .cost-table,
+  :global(html.dark) .stack-item {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  :global(html.dark) .cost-table th {
+    background: #334155;
+    color: #f1f5f9;
+  }
+
+  :global(html.dark) .cost-table td {
+    color: #cbd5e1;
+    border-color: #334155;
+  }
+
+  :global(html.dark) .highlight-row {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  }
+
+  :global(html.dark) .cost-note {
+    background: #334155;
+    color: #cbd5e1;
+  }
+
+  :global(html.dark) .feature-details {
+    border-color: #334155;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .devops-content {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    section {
+      padding: 60px 0;
     }
 
-    .resources-section, .architecture-note {
-      padding: 25px;
+    .hero-section {
+      padding: 60px 0 40px;
+    }
+
+    .cta-card {
+      padding: 40px 24px;
+    }
+
+    .cost-table th,
+    .cost-table td {
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .features {
+      max-width: 150px;
     }
   }
 </style>
