@@ -157,8 +157,8 @@ const services = [
 
 <style>
   .services-hero {
-    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-    color: #fff;
+    background: var(--bg-dark-gradient);
+    color: var(--text-inverse);
     padding: 80px 0;
     text-align: center;
   }
@@ -167,26 +167,29 @@ const services = [
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 20px;
+    color: var(--text-inverse);
   }
 
   .services-hero p {
     font-size: 20px;
-    color: #a0aec0;
+    color: var(--text-muted);
     max-width: 700px;
     margin: 0 auto;
   }
 
   .services-list {
     padding: 60px 0;
+    background: var(--bg-primary);
   }
 
   .service-detail {
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 16px;
     padding: 40px;
     margin-bottom: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-md);
     scroll-margin-top: 100px;
+    border: 1px solid var(--border-color);
   }
 
   .service-header {
@@ -204,20 +207,20 @@ const services = [
   .service-header h2 {
     font-size: 28px;
     font-weight: 700;
-    color: #1a202c;
+    color: var(--text-primary);
     margin: 0 0 5px;
   }
 
   .tagline {
     font-size: 16px;
-    color: #3b82f6;
+    color: var(--accent-primary);
     font-weight: 500;
     margin: 0;
   }
 
   .service-description {
     font-size: 17px;
-    color: #4a5568;
+    color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 30px;
     max-width: 800px;
@@ -232,7 +235,7 @@ const services = [
   .features h3, .technologies h3 {
     font-size: 16px;
     font-weight: 600;
-    color: #1a202c;
+    color: var(--text-primary);
     margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -247,8 +250,8 @@ const services = [
     padding: 10px 0;
     padding-left: 28px;
     position: relative;
-    color: #4a5568;
-    border-bottom: 1px solid #f0f0f0;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
   }
 
   .features li:last-child {
@@ -270,16 +273,21 @@ const services = [
   }
 
   .tech-tag {
-    background: #f0f7ff;
-    color: #3b82f6;
+    background: var(--accent-bg);
+    color: var(--accent-primary);
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
+    border: 1px solid var(--accent-primary);
+  }
+
+  :global(html.dark) .tech-tag {
+    background: rgba(59, 130, 246, 0.15);
   }
 
   .cta-section {
-    background: #f9fafb;
+    background: var(--bg-tertiary);
     padding: 80px 0;
     text-align: center;
   }
@@ -287,13 +295,13 @@ const services = [
   .cta-section h2 {
     font-size: 36px;
     font-weight: 700;
-    color: #1a202c;
+    color: var(--text-primary);
     margin-bottom: 15px;
   }
 
   .cta-section > .container > p {
     font-size: 18px;
-    color: #4a5568;
+    color: var(--text-secondary);
     margin-bottom: 30px;
   }
 
@@ -313,24 +321,24 @@ const services = [
   }
 
   .cta-button.primary {
-    background: #3b82f6;
-    color: #fff;
+    background: var(--accent-gradient);
+    color: var(--text-inverse);
   }
 
   .cta-button.primary:hover {
-    background: #2563eb;
+    background: var(--accent-gradient-hover);
     transform: translateY(-2px);
   }
 
   .cta-button.secondary {
-    background: #fff;
-    color: #1a202c;
-    border: 2px solid #e5e7eb;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
   }
 
   .cta-button.secondary:hover {
-    border-color: #3b82f6;
-    color: #3b82f6;
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
   }
 
   @media (max-width: 768px) {
