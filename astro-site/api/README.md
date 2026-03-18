@@ -73,9 +73,29 @@ Edit `local.settings.json` with your values:
   "Values": {
     "AZURE_OPENAI_ENDPOINT": "https://your-resource.openai.azure.com/",
     "AZURE_OPENAI_API_KEY": "your-api-key",
-    "AZURE_OPENAI_DEPLOYMENT_NAME": "gpt-4o"
+    "AZURE_OPENAI_DEPLOYMENT_NAME": "gpt-4o",
+    "SENDGRID_API_KEY": "SG.xxxx",
+    "OWNER_EMAIL": "info@newftec.com",
+    "FROM_EMAIL": "noreply@newftec.com",
+    "API_BASE_URL": "http://localhost:7071"
   }
 }
+```
+
+#### Required Variables
+| Variable | Description |
+|----------|-------------|
+| `AZURE_OPENAI_ENDPOINT` | Your Azure OpenAI resource endpoint |
+| `AZURE_OPENAI_API_KEY` | Azure OpenAI API key |
+| `AZURE_OPENAI_DEPLOYMENT_NAME` | Model deployment name (default: `gpt-4o`) |
+
+#### Email/Contact Variables (for AI agent email tool)
+| Variable | Description |
+|----------|-------------|
+| `SENDGRID_API_KEY` | SendGrid API key (free tier: 100 emails/day) |
+| `OWNER_EMAIL` | Email to receive customer inquiries (default: info@newftec.com) |
+| `FROM_EMAIL` | Sender email address (must be verified in SendGrid) |
+| `API_BASE_URL` | Base URL for internal API calls (local: http://localhost:7071) |
 ```
 
 ### 3. Run Locally
@@ -110,6 +130,9 @@ When deploying the Astro site to Azure Static Web Apps, the `/api` folder is aut
    - `AZURE_OPENAI_ENDPOINT`
    - `AZURE_OPENAI_API_KEY`
    - `AZURE_OPENAI_DEPLOYMENT_NAME`
+   - `SENDGRID_API_KEY` (for email functionality)
+   - `OWNER_EMAIL`
+   - `FROM_EMAIL`
 
 ### Option 2: Standalone Azure Functions
 
