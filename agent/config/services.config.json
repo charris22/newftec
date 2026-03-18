@@ -1,0 +1,8 @@
+{
+  "owner_email": "info@newftec.com",
+  "company_name": "NEWFTEC",
+  "from_email": "noreply@newftec.com",
+  "from_name": "NEWFTEC AI Assistant",
+  "enable_sms_alerts": false,
+  "high_urgency_sms": true
+}

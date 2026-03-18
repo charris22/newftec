@@ -1,0 +1,51 @@
+{
+  "name": "send_email_to_owner",
+  "description": "Send an email to the NEWFTEC team on behalf of the customer. Use when the customer wants to get in touch, request information, or schedule a follow-up. Always confirm with the customer before sending.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "customer_name": {
+        "type": "string",
+        "description": "The customer's full name"
+      },
+      "customer_email": {
+        "type": "string",
+        "description": "The customer's email address for reply"
+      },
+      "customer_phone": {
+        "type": "string",
+        "description": "The customer's phone number (optional)"
+      },
+      "subject": {
+        "type": "string",
+        "description": "Email subject line summarizing the inquiry"
+      },
+      "message": {
+        "type": "string",
+        "description": "The message content describing what the customer is interested in or asking about"
+      },
+      "services_of_interest": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "cloud-migration",
+            "ai-solutions",
+            "modern-apps",
+            "data-analytics",
+            "devops",
+            "security",
+            "general"
+          ]
+        },
+        "description": "Which NEWFTEC services the customer expressed interest in"
+      },
+      "urgency": {
+        "type": "string",
+        "enum": ["normal", "high"],
+        "description": "How urgent is this inquiry? Use 'high' only if customer explicitly indicates time sensitivity"
+      }
+    },
+    "required": ["customer_name", "customer_email", "message"]
+  }
+}
