@@ -1,0 +1,748 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="McKinney Business Explorer | NEWFTEC"
+  description="Interactive map of McKinney, TX featuring business development zones, trails, parks, and resources for small and medium businesses."
+  currentPage="/mckinney-map"
+>
+  <section class="map-hero">
+    <div class="container">
+      <p class="hero-eyebrow">Geospatial Intelligence</p>
+      <h1>McKinney <span class="gradient-text">Business Explorer</span></h1>
+      <p class="hero-description">Discover opportunities in one of Texas's fastest-growing cities. Explore development zones, incentive areas, trails for client meetings, and more—powered by official City of McKinney geospatial data.</p>
+    </div>
+  </section>
+
+  <section class="map-controls">
+    <div class="container">
+      <div class="layer-categories">
+        <div class="category">
+          <h3>📍 Business & Development</h3>
+          <div class="layer-toggles">
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="retail" checked />
+              <span class="toggle-label">New Retail Development</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="targeted" checked />
+              <span class="toggle-label">Targeted Retail Locations</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="tirz" />
+              <span class="toggle-label">Tax Increment Zones (TIRZ)</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="zoning" />
+              <span class="toggle-label">Zoning Districts</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="devprojects" />
+              <span class="toggle-label">Development Projects</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="category">
+          <h3>🏃 Recreation & Meeting Spots</h3>
+          <div class="layer-toggles">
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="trails" checked />
+              <span class="toggle-label">Hike & Bike Trails</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="parks" checked />
+              <span class="toggle-label">Parks</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="parkstructures" />
+              <span class="toggle-label">Park Amenities</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="golf" />
+              <span class="toggle-label">Golf Courses</span>
+            </label>
+          </div>
+        </div>
+        
+        <div class="category">
+          <h3>🏛️ City Resources</h3>
+          <div class="layer-toggles">
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="facilities" />
+              <span class="toggle-label">City Facilities</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="parking" />
+              <span class="toggle-label">Public Parking</span>
+            </label>
+            <label class="layer-toggle">
+              <input type="checkbox" data-layer="historic" />
+              <span class="toggle-label">Historic Properties</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-container">
+    <div id="viewDiv"></div>
+    <div class="map-legend" id="legendPanel">
+      <h4>Map Legend</h4>
+      <div id="legendContent"></div>
+    </div>
+  </section>
+
+  <section class="insights-section">
+    <div class="container">
+      <h2>Why McKinney for Your Business?</h2>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-icon">📈</div>
+          <h3>Rapid Growth</h3>
+          <p>McKinney is one of the fastest-growing cities in the U.S., with a population exceeding 200,000 and strong projected growth through 2030.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">💰</div>
+          <h3>Tax Incentive Zones</h3>
+          <p>Multiple Tax Increment Reinvestment Zones (TIRZ) offer funding mechanisms for infrastructure and development projects that benefit businesses.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">🎯</div>
+          <h3>Strategic Retail Sites</h3>
+          <p>The city has identified targeted retail locations primed for development—explore them on the map above to find your ideal spot.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-icon">🌳</div>
+          <h3>Quality of Life</h3>
+          <p>Over 50 parks and 70+ miles of trails provide excellent amenities for employees and great venues for informal client meetings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="data-attribution">
+    <div class="container">
+      <h3>Data Sources</h3>
+      <p>This map uses open geospatial data provided by the <a href="https://maps.mckinneytexas.org/mckinney/rest/services" target="_blank" rel="noopener noreferrer">City of McKinney GIS Services</a>. Data layers include Parks & Recreation, Planning & Zoning, Retail Development, City Facilities, and more.</p>
+      <p class="demo-note">This interactive map demonstrates NEWFTEC's expertise in geospatial data integration and custom mapping solutions. <a href="/contact">Contact us</a> to build similar tools for your business.</p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Need Custom Geospatial Solutions?</h2>
+      <p>We build data-driven mapping applications, location analytics dashboards, and GIS integrations for businesses of all sizes.</p>
+      <div class="cta-buttons">
+        <a href="/contact" class="cta-button primary">Discuss Your Project</a>
+        <a href="/services" class="cta-button secondary">View Our Services</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/dark/main.css" />
+<script is:inline src="https://js.arcgis.com/4.28/"></script>
+
+<script is:inline>
+  require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/MapImageLayer",
+    "esri/layers/FeatureLayer",
+    "esri/widgets/Legend",
+    "esri/widgets/ScaleBar",
+    "esri/widgets/Locate",
+    "esri/widgets/Search"
+  ], function(Map, MapView, MapImageLayer, FeatureLayer, Legend, ScaleBar, Locate, Search) {
+    
+    // McKinney city center coordinates
+    const mckinneyCenter = [-96.6397, 33.1972];
+    
+    // Base URL for McKinney ArcGIS services
+    const baseUrl = "https://maps.mckinneytexas.org/mckinney/rest/services";
+    
+    // Define layer configurations
+    const layerConfigs = {
+      // Business & Development
+      retail: {
+        url: `${baseUrl}/MapServices/RetailDevelopment/MapServer/0`,
+        title: "New Retail Development",
+        type: "feature",
+        visible: true
+      },
+      targeted: {
+        url: `${baseUrl}/MapServices/TargetedRetailLocations/MapServer/0`,
+        title: "Targeted Retail Locations",
+        type: "feature",
+        visible: true
+      },
+      tirz: {
+        url: `${baseUrl}/OpenData/Planning_Zoning/MapServer`,
+        sublayers: [{ id: 5, visible: true }],
+        title: "Tax Increment Reinvestment Zones",
+        type: "mapimage",
+        visible: false
+      },
+      zoning: {
+        url: `${baseUrl}/OpenData/Planning_Zoning/MapServer`,
+        sublayers: [{ id: 4, visible: true }],
+        title: "Zoning Districts",
+        type: "mapimage",
+        visible: false
+      },
+      devprojects: {
+        url: `${baseUrl}/OpenData/Planning_Zoning/MapServer`,
+        sublayers: [{ id: 0, visible: true }],
+        title: "Development Projects",
+        type: "mapimage",
+        visible: false
+      },
+      
+      // Recreation
+      trails: {
+        url: `${baseUrl}/OpenData/Parks_and_Recreation/MapServer/1`,
+        title: "Hike & Bike Trails",
+        type: "feature",
+        visible: true
+      },
+      parks: {
+        url: `${baseUrl}/OpenData/Parks_and_Recreation/MapServer/3`,
+        title: "Parks",
+        type: "feature",
+        visible: true
+      },
+      parkstructures: {
+        url: `${baseUrl}/OpenData/Parks_and_Recreation/MapServer/2`,
+        title: "Park Amenities",
+        type: "feature",
+        visible: false
+      },
+      golf: {
+        url: `${baseUrl}/OpenData/Parks_and_Recreation/MapServer/0`,
+        title: "Golf Courses",
+        type: "feature",
+        visible: false
+      },
+      
+      // City Resources
+      facilities: {
+        url: `${baseUrl}/MapServices/CityFacilities/MapServer/0`,
+        title: "City Facilities",
+        type: "feature",
+        visible: false
+      },
+      parking: {
+        url: `${baseUrl}/MapServices/CityFacilities/MapServer/1`,
+        title: "Public Parking",
+        type: "feature",
+        visible: false
+      },
+      historic: {
+        url: `${baseUrl}/MapServices/HistoricProperties/MapServer`,
+        title: "Historic Properties",
+        type: "mapimage",
+        visible: false
+      }
+    };
+    
+    // Create layers
+    const layers = {};
+    
+    Object.keys(layerConfigs).forEach(key => {
+      const config = layerConfigs[key];
+      
+      if (config.type === "feature") {
+        layers[key] = new FeatureLayer({
+          url: config.url,
+          title: config.title,
+          visible: config.visible,
+          outFields: ["*"],
+          popupEnabled: true
+        });
+      } else if (config.type === "mapimage") {
+        layers[key] = new MapImageLayer({
+          url: config.url,
+          title: config.title,
+          visible: config.visible,
+          sublayers: config.sublayers
+        });
+      }
+    });
+    
+    // Create map with all layers
+    const map = new Map({
+      basemap: "streets-navigation-vector",
+      layers: Object.values(layers)
+    });
+    
+    // Create map view
+    const view = new MapView({
+      container: "viewDiv",
+      map: map,
+      center: mckinneyCenter,
+      zoom: 12,
+      constraints: {
+        minZoom: 10,
+        maxZoom: 18
+      },
+      popup: {
+        dockEnabled: true,
+        dockOptions: {
+          buttonEnabled: false,
+          breakpoint: false,
+          position: "bottom-right"
+        }
+      }
+    });
+    
+    // Add widgets
+    const legend = new Legend({
+      view: view,
+      container: "legendContent"
+    });
+    
+    const scaleBar = new ScaleBar({
+      view: view,
+      unit: "dual"
+    });
+    view.ui.add(scaleBar, "bottom-left");
+    
+    const locateBtn = new Locate({
+      view: view
+    });
+    view.ui.add(locateBtn, "top-left");
+    
+    const searchWidget = new Search({
+      view: view,
+      popupEnabled: true,
+      resultGraphicEnabled: true
+    });
+    view.ui.add(searchWidget, "top-right");
+    
+    // Handle layer toggles
+    document.querySelectorAll('.layer-toggle input').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const layerKey = this.dataset.layer;
+        if (layers[layerKey]) {
+          layers[layerKey].visible = this.checked;
+        }
+      });
+    });
+    
+    // Toggle legend panel
+    const legendPanel = document.getElementById('legendPanel');
+    let legendVisible = true;
+    
+    view.when(() => {
+      console.log("McKinney Business Explorer loaded successfully");
+    });
+  });
+</script>
+
+<style>
+  .map-hero {
+    background: var(--bg-primary);
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent-primary);
+    background: var(--accent-gradient-soft);
+    padding: 8px 16px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+  }
+
+  .map-hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    line-height: 1.1;
+  }
+
+  .gradient-text {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .map-controls {
+    background: var(--bg-secondary);
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .layer-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .category h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-primary);
+  }
+
+  .layer-toggles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .layer-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .layer-toggle:hover {
+    background: var(--bg-hover);
+  }
+
+  .layer-toggle input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-tertiary);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .layer-toggle input[type="checkbox"]:checked {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+  }
+
+  .layer-toggle input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .layer-toggle input[type="checkbox"]:hover {
+    border-color: var(--accent-primary);
+  }
+
+  .toggle-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .layer-toggle input:checked + .toggle-label {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .map-container {
+    position: relative;
+    height: 600px;
+    background: var(--bg-tertiary);
+  }
+
+  #viewDiv {
+    width: 100%;
+    height: 100%;
+  }
+
+  .map-legend {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 15px;
+    max-width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+  }
+
+  .map-legend h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  #legendContent {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  /* ArcGIS widget overrides for dark mode */
+  :global(html.dark) .esri-widget {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+  }
+
+  :global(html.dark) .esri-search {
+    background: var(--bg-card) !important;
+  }
+
+  :global(html.dark) .esri-search__input {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+  }
+
+  :global(html.dark) .esri-icon {
+    color: var(--text-primary) !important;
+  }
+
+  :global(html.dark) .esri-widget--button {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+  }
+
+  :global(html.dark) .esri-widget--button:hover {
+    background: var(--bg-hover) !important;
+  }
+
+  :global(html.dark) .esri-popup__main-container {
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+  }
+
+  :global(html.dark) .esri-popup__header-title {
+    color: var(--text-primary) !important;
+  }
+
+  :global(html.dark) .esri-popup__content {
+    color: var(--text-secondary) !important;
+  }
+
+  :global(html.dark) .esri-legend {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+  }
+
+  :global(html.dark) .esri-legend__layer-caption {
+    color: var(--text-primary) !important;
+  }
+
+  :global(html.dark) .esri-legend__layer-cell--info {
+    color: var(--text-secondary) !important;
+  }
+
+  .insights-section {
+    padding: 80px 0;
+    background: var(--bg-primary);
+  }
+
+  .insights-section h2 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 50px;
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .insight-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .insight-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .insight-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+
+  .insight-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .insight-card p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .data-attribution {
+    background: var(--bg-tertiary);
+    padding: 40px 0;
+    text-align: center;
+  }
+
+  .data-attribution h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+  }
+
+  .data-attribution p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 10px;
+  }
+
+  .data-attribution a {
+    color: var(--accent-primary);
+    text-decoration: none;
+  }
+
+  .data-attribution a:hover {
+    text-decoration: underline;
+  }
+
+  .demo-note {
+    font-style: italic;
+    margin-top: 15px !important;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .cta-section {
+    background: var(--bg-secondary);
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+  }
+
+  .cta-section > .container > p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-button {
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button.primary {
+    background: var(--accent-gradient);
+    color: var(--text-inverse);
+  }
+
+  .cta-button.primary:hover {
+    background: var(--accent-gradient-hover);
+    transform: translateY(-2px);
+  }
+
+  .cta-button.secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+  }
+
+  .cta-button.secondary:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  @media (max-width: 768px) {
+    .map-hero h1 {
+      font-size: 32px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      padding: 6px 12px;
+    }
+
+    .hero-description {
+      font-size: 16px;
+    }
+
+    .map-container {
+      height: 450px;
+    }
+
+    .map-legend {
+      bottom: 10px;
+      right: 10px;
+      left: 10px;
+      max-width: none;
+      max-height: 150px;
+    }
+
+    .layer-categories {
+      grid-template-columns: 1fr;
+    }
+
+    .insights-section h2,
+    .cta-section h2 {
+      font-size: 26px;
+    }
+  }
+</style>
