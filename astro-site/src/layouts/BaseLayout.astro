@@ -719,28 +719,33 @@ html.dark .cta-button.secondary:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+  background: var(--bg-mesh), var(--bg-primary);
   overflow: hidden;
 }
 
 .about-hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('/assets/images/nodes.jpg') center/cover no-repeat;
-  opacity: 0.15;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
 }
 
 .about-hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(30, 58, 95, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+  bottom: -10%;
+  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(50px);
+  pointer-events: none;
 }
 
 .about-hero-content {
@@ -753,22 +758,33 @@ html.dark .cta-button.secondary:hover {
 .about-hero h1 {
   font-size: 48px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 20px;
   line-height: 1.2;
 }
 
 .about-hero h1 em {
-  color: #60a5fa;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-style: italic;
 }
 
 .hero-subtitle {
   font-size: 20px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+}
+
+html.dark .about-hero::before {
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+}
+
+html.dark .about-hero-overlay {
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
 }
 
 /* Section Labels */

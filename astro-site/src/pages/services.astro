@@ -157,24 +157,64 @@ const services = [
 
 <style>
   .services-hero {
-    background: var(--bg-dark-gradient);
-    color: var(--text-inverse);
+    position: relative;
+    background: var(--bg-mesh), var(--bg-primary);
+    color: var(--text-primary);
     padding: 80px 0;
     text-align: center;
+    overflow: hidden;
+  }
+
+  .services-hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    pointer-events: none;
+  }
+
+  .services-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(50px);
+    pointer-events: none;
+  }
+
+  :global(html.dark) .services-hero::before {
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+  }
+
+  :global(html.dark) .services-hero::after {
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
   }
 
   .services-hero h1 {
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 20px;
-    color: var(--text-inverse);
+    color: var(--text-primary);
+    position: relative;
+    z-index: 1;
   }
 
   .services-hero p {
     font-size: 20px;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     max-width: 700px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
   .services-list {
