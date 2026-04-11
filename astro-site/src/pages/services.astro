@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import type { IconName } from '../lib/icon-registry';
 
-const services = [
+const services: Array<{ id: string; icon: IconName; title: string; tagline: string; description: string; features: string[]; technologies: string[] }> = [
   {
     id: 'cloud-migration',
-    icon: '☁️',
+    icon: 'cloud',
     title: 'Cloud Migration',
     tagline: 'Modernize your infrastructure with confidence',
     description: 'Move your workloads to the cloud with minimal disruption. We assess, plan, and execute migrations using proven methodologies and best practices.',
@@ -19,7 +21,7 @@ const services = [
   },
   {
     id: 'ai-solutions',
-    icon: '🤖',
+    icon: 'bot',
     title: 'Generative AI & Intelligent Automation',
     tagline: 'Put AI to work for your business',
     description: 'Leverage cutting-edge GenAI and machine learning to automate processes, gain insights, and enhance customer experiences with custom-built intelligent solutions.',
@@ -34,7 +36,7 @@ const services = [
   },
   {
     id: 'modern-apps',
-    icon: '⚡',
+    icon: 'flash',
     title: 'Application Modernization',
     tagline: 'Build scalable, cloud-native applications',
     description: 'Design and build applications that leverage the full power of the cloud—serverless compute, containers, and managed services.',
@@ -49,7 +51,7 @@ const services = [
   },
   {
     id: 'data-analytics',
-    icon: '📊',
+    icon: 'chart',
     title: 'Data & Analytics',
     tagline: 'Turn your data into competitive advantage',
     description: 'Build modern data platforms that unify your data, enable real-time analytics, and power business intelligence.',
@@ -64,7 +66,7 @@ const services = [
   },
   {
     id: 'devops',
-    icon: '🔄',
+    icon: 'sync',
     title: 'DevOps & Platform Engineering',
     tagline: 'Accelerate delivery with automation',
     description: 'Implement CI/CD pipelines, infrastructure as code, and developer platforms that enable rapid, reliable software delivery.',
@@ -79,7 +81,7 @@ const services = [
   },
   {
     id: 'security',
-    icon: '🛡️',
+    icon: 'shield',
     title: 'Security & Compliance',
     tagline: 'Protect your cloud investments',
     description: 'Implement Zero Trust security, meet compliance requirements, and protect your cloud environment with defense-in-depth strategies.',
@@ -112,7 +114,7 @@ const services = [
       {services.map((service, index) => (
         <div class="service-detail" id={service.id}>
           <div class="service-header">
-            <span class="service-icon">{service.icon}</span>
+            <Icon name={service.icon} size={40} class="service-icon" />
             <div>
               <h2>{service.title}</h2>
               <p class="tagline">{service.tagline}</p>
@@ -240,8 +242,8 @@ const services = [
   }
 
   .service-icon {
-    font-size: 3rem;
-    line-height: 1;
+    color: var(--accent-primary);
+    flex-shrink: 0;
   }
 
   .service-header h2 {

@@ -3,6 +3,8 @@
  * Trust Badges Component
  * Displays certifications, partnerships, and trust signals
  */
+import Icon from './Icon.astro';
+import type { IconName } from '../lib/icon-registry';
 
 interface Props {
   variant?: 'light' | 'dark';
@@ -10,20 +12,20 @@ interface Props {
 
 const { variant = 'light' } = Astro.props;
 
-const badges = [
-  { 
+const badges: Array<{ name: string; icon: IconName; description: string }> = [
+  {
     name: 'Cloud Certified',
-    icon: '🏅',
+    icon: 'certificate',
     description: 'Certified Cloud Architect'
   },
-  { 
+  {
     name: 'AI Specialist',
-    icon: '🤖',
+    icon: 'bot',
     description: 'GenAI & ML Expert'
   },
-  { 
+  {
     name: '20+ Years of project experience',
-    icon: '✅',
+    icon: 'check-circle',
     description: 'Successfully Delivered'
   }
 ];
@@ -32,7 +34,9 @@ const badges = [
 <div class:list={['trust-badges', variant]}>
   {badges.map(badge => (
     <div class="badge">
-      <span class="badge-icon">{badge.icon}</span>
+      <div class="badge-icon">
+        <Icon name={badge.icon} size={24} />
+      </div>
       <div class="badge-text">
         <span class="badge-name">{badge.name}</span>
         <span class="badge-desc">{badge.description}</span>
@@ -69,7 +73,6 @@ const badges = [
   }
 
   .badge-icon {
-    font-size: 1.5rem;
     width: 44px;
     height: 44px;
     display: flex;
@@ -77,6 +80,7 @@ const badges = [
     justify-content: center;
     background: var(--accent-gradient-soft);
     border-radius: 10px;
+    color: var(--accent-primary);
   }
 
   .badge-text {

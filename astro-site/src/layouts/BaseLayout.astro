@@ -309,8 +309,20 @@ header .container {
 }
 
 .logo img {
-  height: 50px;
+  height: 75px;
   transition: transform 0.3s ease;
+}
+
+.logo .logo-dark {
+  display: none;
+}
+
+html.dark .logo .logo-light {
+  display: none;
+}
+
+html.dark .logo .logo-dark {
+  display: block;
 }
 
 .logo img:hover {
@@ -1478,7 +1490,7 @@ footer {
 
 /* Dark Mode Overrides */
 html.dark .logo img {
-  filter: brightness(1.2);
+  filter: none;
 }
 
 html.dark .about-intro {
