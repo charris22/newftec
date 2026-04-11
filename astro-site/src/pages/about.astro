@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import type { IconName } from '../lib/icon-registry';
 
 const stats = [
   { number: '10+', label: 'Years Experience' },
@@ -8,47 +10,47 @@ const stats = [
   { number: '24/7', label: 'Support Available' }
 ];
 
-const coreValues = [
+const coreValues: Array<{ title: string; description: string; icon: IconName; example: string }> = [
   {
     title: 'Powerful',
     description: 'We harness enterprise-grade technology—big data, cloud infrastructure, and AI—to give small businesses the same competitive advantages as industry giants.',
-    icon: '⚡',
+    icon: 'flash',
     example: 'A regional retailer increased sales 40% using our analytics platform'
   },
   {
     title: 'Simple',
     description: 'Complex technology shouldn\'t mean complex implementation. We design solutions that are intuitive to use and easy to maintain, with clear documentation and training.',
-    icon: '🎯',
+    icon: 'target',
     example: 'Average client onboarding: 2 weeks, not months'
   },
   {
     title: 'Durable',
     description: 'We build for the long term. Our solutions use proven, stable technologies with clear upgrade paths, so your investment keeps paying dividends for years.',
-    icon: '🛡️',
+    icon: 'shield',
     example: '95% of our 2020 deployments still running strong'
   }
 ];
 
-const differentiators = [
+const differentiators: Array<{ title: string; description: string; icon: IconName }> = [
   {
     title: 'Small Business Focus',
     description: 'Unlike enterprise consultants who treat SMBs as an afterthought, we\'ve built our entire practice around your unique challenges and budget constraints.',
-    icon: '🏪'
+    icon: 'store'
   },
   {
     title: 'Fixed-Price Projects',
     description: 'No surprise invoices. We quote fixed prices for defined scopes, so you know exactly what you\'re paying before we start.',
-    icon: '💰'
+    icon: 'money'
   },
   {
     title: 'Knowledge Transfer',
     description: 'We don\'t create dependencies. Every project includes documentation and training so your team can maintain and extend what we build.',
-    icon: '📚'
+    icon: 'book'
   },
   {
     title: 'Modern Tech Stack',
     description: 'GenAI, cloud-native architecture, serverless computing—we bring cutting-edge technology within reach of growing businesses.',
-    icon: '🚀'
+    icon: 'rocket'
   }
 ];
 ---
@@ -111,7 +113,7 @@ const differentiators = [
       <div class="values-grid-modern">
         {coreValues.map(value => (
           <div class="value-card-modern">
-            <span class="value-icon">{value.icon}</span>
+            <Icon name={value.icon} size={32} class="value-icon" />
             <h3>{value.title}</h3>
             <p>{value.description}</p>
             <div class="value-example">
@@ -132,7 +134,7 @@ const differentiators = [
       <div class="differentiators-grid">
         {differentiators.map(item => (
           <div class="differentiator-card">
-            <span class="differentiator-icon">{item.icon}</span>
+            <Icon name={item.icon} size={32} class="differentiator-icon" />
             <h3>{item.title}</h3>
             <p>{item.description}</p>
           </div>
@@ -151,22 +153,22 @@ const differentiators = [
         
         <div class="genai-grid">
           <div class="genai-item">
-            <span class="genai-icon">💬</span>
+            <Icon name="chat" size={28} class="genai-icon" />
             <h4>Engage Customers 24/7</h4>
             <p>AI-powered chatbots that actually help—answering questions, booking appointments, and qualifying leads while you sleep.</p>
           </div>
           <div class="genai-item">
-            <span class="genai-icon">✍️</span>
+            <Icon name="edit" size={28} class="genai-icon" />
             <h4>Create Content Faster</h4>
             <p>Generate marketing copy, social posts, and reports in minutes instead of hours, with your brand voice built in.</p>
           </div>
           <div class="genai-item">
-            <span class="genai-icon">📊</span>
+            <Icon name="chart" size={28} class="genai-icon" />
             <h4>Uncover Hidden Insights</h4>
             <p>AI-powered analytics that spot trends and opportunities in your data that spreadsheets would never reveal.</p>
           </div>
           <div class="genai-item">
-            <span class="genai-icon">⚙️</span>
+            <Icon name="settings" size={28} class="genai-icon" />
             <h4>Automate the Mundane</h4>
             <p>Let AI handle repetitive tasks—data entry, scheduling, inventory—so your team can focus on what matters.</p>
           </div>
