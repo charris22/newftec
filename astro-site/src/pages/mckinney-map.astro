@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 ---
 
 <BaseLayout 
@@ -19,7 +20,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="container">
       <div class="layer-categories">
         <div class="category">
-          <h3>📍 Business & Development</h3>
+          <div class="category-header">
+            Business & Development
+          </div>
           <div class="layer-toggles">
             <label class="layer-toggle">
               <input type="checkbox" data-layer="retail" checked />
@@ -45,7 +48,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         
         <div class="category">
-          <h3>🏃 Recreation & Meeting Spots</h3>
+          <div class="category-header">
+            Recreation & Meeting Spots
+          </div>
           <div class="layer-toggles">
             <label class="layer-toggle">
               <input type="checkbox" data-layer="trails" checked />
@@ -67,7 +72,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         
         <div class="category">
-          <h3>🏛️ City Resources</h3>
+          <div class="category-header">
+            City Resources
+          </div>
           <div class="layer-toggles">
             <label class="layer-toggle">
               <input type="checkbox" data-layer="facilities" />
@@ -100,22 +107,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h2>Why McKinney for Your Business?</h2>
       <div class="insights-grid">
         <div class="insight-card">
-          <div class="insight-icon">📈</div>
+          <Icon name="trending" size={40} class="insight-icon" />
           <h3>Rapid Growth</h3>
           <p>McKinney is one of the fastest-growing cities in the U.S., with a population exceeding 200,000 and strong projected growth through 2030.</p>
         </div>
         <div class="insight-card">
-          <div class="insight-icon">💰</div>
+          <Icon name="money" size={40} class="insight-icon" />
           <h3>Tax Incentive Zones</h3>
           <p>Multiple Tax Increment Reinvestment Zones (TIRZ) offer funding mechanisms for infrastructure and development projects that benefit businesses.</p>
         </div>
         <div class="insight-card">
-          <div class="insight-icon">🎯</div>
+          <Icon name="target" size={40} class="insight-icon" />
           <h3>Strategic Retail Sites</h3>
           <p>The city has identified targeted retail locations primed for development—explore them on the map above to find your ideal spot.</p>
         </div>
         <div class="insight-card">
-          <div class="insight-icon">🌳</div>
+          <Icon name="tree" size={40} class="insight-icon" />
           <h3>Quality of Life</h3>
           <p>Over 50 parks and 70+ miles of trails provide excellent amenities for employees and great venues for informal client meetings.</p>
         </div>
@@ -398,6 +405,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .category h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-primary);
+  }
+
+  .category-header {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-primary);
@@ -599,7 +618,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .insight-icon {
-    font-size: 3rem;
+    color: var(--accent-primary);
     margin-bottom: 15px;
   }
 

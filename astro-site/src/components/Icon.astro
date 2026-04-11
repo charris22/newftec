@@ -1,0 +1,43 @@
+---
+import { iconRegistry, type IconName } from '../lib/icon-registry';
+
+interface Props {
+  name: IconName;
+  size?: number | string;
+  label?: string;
+  decorative?: boolean;
+  class?: string;
+}
+
+const {
+  name,
+  size = 24,
+  label,
+  decorative = true,
+  class: className,
+} = Astro.props;
+
+const icon = iconRegistry[name];
+const sizeValue = typeof size === 'number' ? `${size}px` : size;
+const isDecorative = decorative || !label;
+---
+
+<svg
+  class:list={['icon', className]}
+  width={sizeValue}
+  height={sizeValue}
+  viewBox={icon.viewBox}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role={isDecorative ? undefined : 'img'}
+  aria-hidden={isDecorative ? 'true' : undefined}
+  aria-label={isDecorative ? undefined : label}
+  set:html={icon.body}
+/>
+
+<style>
+  .icon {
+    display: block;
+    flex-shrink: 0;
+  }
+</style>

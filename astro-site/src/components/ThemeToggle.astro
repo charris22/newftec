@@ -28,24 +28,34 @@
 </button>
 
 <script>
-  // Attach click handlers to all theme toggle buttons
-  document.querySelectorAll('[data-theme-toggle]').forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const html = document.documentElement;
-      html.classList.toggle('dark');
-      const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
-      localStorage.setItem('theme', newTheme);
+  function initThemeToggle() {
+    // Attach click handlers to all theme toggle buttons
+    document.querySelectorAll('[data-theme-toggle]').forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const html = document.documentElement;
+        html.classList.toggle('dark');
+        const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+      });
     });
-  });
 
-  // Listen for system theme changes (only add once)
-  if (!window.__themeListenerAdded) {
-    window.__themeListenerAdded = true;
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('theme')) {
-        document.documentElement.classList.toggle('dark', e.matches);
-      }
-    });
+  if (!(window as any).themeMediaQueryListenerInitialized) {
+    (window as any).themeMediaQueryListenerInitialized = true;
+      (window as any).__themeListenerAdded = true;
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .addEventListener('change', (e) => {
+          if (!localStorage.getItem('theme')) {
+            document.documentElement.classList.toggle('dark', e.matches);
+          }
+        });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
   }
 </script>
 

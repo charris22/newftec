@@ -1,22 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import type { IconName } from '../lib/icon-registry';
 
-const contactMethods = [
+interface ContactMethod {
+  icon: IconName;
+  title: string;
+  description: string;
+  action: string;
+  isLink?: boolean;
+}
+
+const contactMethods: ContactMethod[] = [
   {
-    icon: '📧',
+    icon: 'mail',
     title: 'Email Us',
     description: 'Get a response within 24 hours',
     action: 'info@newftec.com'
   },
   {
-    icon: '💬',
+    icon: 'chat',
     title: 'Chat with AI',
     description: 'Instant answers to common questions',
     action: '/chat',
     isLink: true
   },
   {
-    icon: '📅',
+    icon: 'calendar',
     title: 'Schedule a Call',
     description: 'Book a free 30-minute consultation',
     action: 'Fill out the form below'
@@ -40,7 +50,7 @@ const contactMethods = [
       <div class="contact-methods">
         {contactMethods.map(method => (
           <div class="contact-method">
-            <span class="contact-method-icon">{method.icon}</span>
+            <Icon name={method.icon} size={28} class="contact-method-icon" />
             <h3>{method.title}</h3>
             <p>{method.description}</p>
             {method.isLink ? (
@@ -78,15 +88,15 @@ const contactMethods = [
     <div class="container">
       <div class="trust-items">
         <div class="trust-item">
-          <span class="trust-icon">🔒</span>
+          <Icon name="lock" size={20} class="trust-icon" />
           <span>Your data is secure and never shared</span>
         </div>
         <div class="trust-item">
-          <span class="trust-icon">⚡</span>
+          <Icon name="flash" size={20} class="trust-icon" />
           <span>Response within 24 hours guaranteed</span>
         </div>
         <div class="trust-item">
-          <span class="trust-icon">🤝</span>
+          <Icon name="handshake" size={20} class="trust-icon" />
           <span>No obligation, no pressure</span>
         </div>
       </div>

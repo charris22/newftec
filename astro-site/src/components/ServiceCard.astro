@@ -1,15 +1,22 @@
 ---
+import Icon from './Icon.astro';
+import type { IconName } from '../lib/icon-registry';
+
 interface Props {
   title: string;
   description: string;
-  icon?: string;
+  icon?: IconName;
 }
 
 const { title, description, icon } = Astro.props;
 ---
 
 <div class="service-card">
-  {icon && <div class="service-icon-wrapper"><span class="service-icon">{icon}</span></div>}
+  {icon && (
+    <div class="service-icon-wrapper">
+      <Icon name={icon} size={28} class="service-icon" />
+    </div>
+  )}
   <h3>{title}</h3>
   <p>{description}</p>
 </div>
@@ -58,6 +65,7 @@ const { title, description, icon } = Astro.props;
     justify-content: center;
     margin-bottom: 20px;
     transition: transform 0.3s ease;
+    color: var(--accent-primary);
   }
 
   .service-card:hover .service-icon-wrapper {
@@ -65,7 +73,6 @@ const { title, description, icon } = Astro.props;
   }
 
   .service-icon {
-    font-size: 1.75rem;
     line-height: 1;
   }
 
