@@ -2,49 +2,58 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const caseStudies = [
+  // {
+  //   id: 'retail-ai',
+  //   client: 'Regional Retail Chain',
+  //   industry: 'Retail',
+  //   challenge: 'Manual inventory management causing stockouts and overstock across 15 locations',
+  //   solution: 'Implemented cloud-based inventory forecasting using machine learning and real-time BI dashboards',
+  //   results: [
+  //     { metric: '35%', label: 'Reduction in stockouts' },
+  //     { metric: '$180K', label: 'Annual savings' },
+  //     { metric: '4 weeks', label: 'Implementation time' }
+  //   ],
+  //   technologies: ['Machine Learning', 'Data Warehouse', 'BI Dashboards', 'Serverless Functions'],
+  //   quote: 'NEWFTEC helped us compete with big-box retailers using AI we thought was out of reach for a company our size.',
+  //   image: '/assets/images/case-retail.jpg'
+  // },
+  // {
+  //   id: 'manufacturing-iot',
+  //   client: 'Precision Manufacturing Co.',
+  //   industry: 'Manufacturing',
+  //   challenge: 'No visibility into equipment health leading to unexpected downtime and maintenance costs',
+  //   solution: 'Deployed IoT sensors connected to a cloud platform with predictive maintenance models',
+  //   results: [
+  //     { metric: '60%', label: 'Reduction in unplanned downtime' },
+  //     { metric: '25%', label: 'Maintenance cost savings' },
+  //     { metric: '99.2%', label: 'Equipment uptime achieved' }
+  //   ],
+  //   technologies: ['IoT Platform', 'Stream Analytics', 'Digital Twins', 'BI Dashboards'],
+  //   quote: 'We went from reactive to predictive maintenance in just two months. The ROI was immediate.',
+  //   image: '/assets/images/case-manufacturing.jpg'
+  // },
   {
-    id: 'retail-ai',
-    client: 'Regional Retail Chain',
-    industry: 'Retail',
-    challenge: 'Manual inventory management causing stockouts and overstock across 15 locations',
-    solution: 'Implemented cloud-based inventory forecasting using machine learning and real-time BI dashboards',
+    id: 'warrior-rendezvous',
+    client: 'Warrior Rendezvous Farm Stay',
+    industry: 'Nonprofit / Agriculture',
+    challenge: 'Needed a modern, mission-driven web presence to engage supporters, streamline donations, and amplify impact.',
+    solution: 'Delivered a state-of-the-art website using Astro, blending custom branding, dynamic content, e-commerce, and interactive tools for a seamless, accessible, and high-performance experience.',
     results: [
-      { metric: '35%', label: 'Reduction in stockouts' },
-      { metric: '$180K', label: 'Annual savings' },
-      { metric: '4 weeks', label: 'Implementation time' }
+      { metric: '2 weeks', label: 'Implementation time' },
+      { metric: '↑ Donations', label: 'Increased Engagement' },
+      { metric: '↓ Manual Work', label: 'Operational Efficiency' }
     ],
-    technologies: ['Machine Learning', 'Data Warehouse', 'BI Dashboards', 'Serverless Functions'],
-    quote: 'NEWFTEC helped us compete with big-box retailers using AI we thought was out of reach for a company our size.',
-    image: '/assets/images/case-retail.jpg'
-  },
-  {
-    id: 'manufacturing-iot',
-    client: 'Precision Manufacturing Co.',
-    industry: 'Manufacturing',
-    challenge: 'No visibility into equipment health leading to unexpected downtime and maintenance costs',
-    solution: 'Deployed IoT sensors connected to a cloud platform with predictive maintenance models',
-    results: [
-      { metric: '60%', label: 'Reduction in unplanned downtime' },
-      { metric: '25%', label: 'Maintenance cost savings' },
-      { metric: '99.2%', label: 'Equipment uptime achieved' }
+    technologies: [
+      'Astro Framework',
+      'Azure Web Apps',
+      'Dynamic Blog & Stories',
+      'PayPal & Donorbox',
+      'Ecwid Shop',
+      'Azure Foundry',
+      'Application Insights',
+      'Mobile Optimization'
     ],
-    technologies: ['IoT Platform', 'Stream Analytics', 'Digital Twins', 'BI Dashboards'],
-    quote: 'We went from reactive to predictive maintenance in just two months. The ROI was immediate.',
-    image: '/assets/images/case-manufacturing.jpg'
-  },
-  {
-    id: 'legal-ai',
-    client: 'Regional Law Firm',
-    industry: 'Legal Services',
-    challenge: 'Paralegals spending 40+ hours weekly on document review and contract analysis',
-    solution: 'Built custom AI document processing solution using GenAI and intelligent document understanding',
-    results: [
-      { metric: '75%', label: 'Time savings on document review' },
-      { metric: '3x', label: 'More cases handled' },
-      { metric: '$250K', label: 'Annual labor savings' }
-    ],
-    technologies: ['Large Language Models', 'Document Intelligence', 'Vector Search', 'Cloud Storage'],
-    quote: 'Our team now focuses on high-value legal work instead of document processing. Game changer.',
+    quote: 'Our new website is more than a digital brochure - it is a powerful platform for impact. We are reaching more people, inspiring more action, and focusing on what matters most. The partnership and technical excellence made all the difference.',
     image: '/assets/images/case-legal.jpg'
   }
 ];
@@ -123,9 +132,10 @@ const caseStudies = [
 </BaseLayout>
 
 <style>
+
   .case-studies-hero {
-    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
-    color: #fff;
+    background: var(--accent-gradient);
+    color: var(--text-inverse);
     padding: 80px 0;
     text-align: center;
   }
@@ -138,7 +148,7 @@ const caseStudies = [
 
   .case-studies-hero p {
     font-size: 20px;
-    color: #a7f3d0;
+    color: var(--accent-light);
     max-width: 600px;
     margin: 0 auto;
   }
@@ -148,23 +158,23 @@ const caseStudies = [
   }
 
   .case-study {
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 16px;
     overflow: hidden;
     margin-bottom: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-lg);
   }
 
   .case-study-header {
-    background: #f9fafb;
+    background: var(--bg-tertiary);
     padding: 30px 40px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border-color);
   }
 
   .industry-badge {
     display: inline-block;
-    background: #3b82f6;
-    color: #fff;
+    background: var(--accent-primary);
+    color: var(--text-inverse);
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 12px;
@@ -177,7 +187,7 @@ const caseStudies = [
   .case-study-header h2 {
     font-size: 28px;
     font-weight: 700;
-    color: #1a202c;
+    color: var(--text-primary);
     margin: 0;
   }
 
@@ -195,7 +205,7 @@ const caseStudies = [
   .block h3 {
     font-size: 14px;
     font-weight: 600;
-    color: #718096;
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 10px;
@@ -203,12 +213,12 @@ const caseStudies = [
 
   .block p {
     font-size: 17px;
-    color: #1a202c;
+    color: var(--text-primary);
     line-height: 1.6;
   }
 
   .results {
-    background: #f0fdf4;
+    background: var(--accent-bg);
     border-radius: 12px;
     padding: 30px;
     margin-bottom: 30px;
@@ -217,7 +227,7 @@ const caseStudies = [
   .results h3 {
     font-size: 14px;
     font-weight: 600;
-    color: #065f46;
+    color: var(--accent-primary);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
@@ -237,22 +247,22 @@ const caseStudies = [
     display: block;
     font-size: 36px;
     font-weight: 700;
-    color: #047857;
+    color: var(--accent-primary);
     line-height: 1;
   }
 
   .metric-label {
     display: block;
     font-size: 14px;
-    color: #065f46;
+    color: var(--accent-hover);
     margin-top: 8px;
   }
 
   .quote {
     font-size: 20px;
     font-style: italic;
-    color: #4a5568;
-    border-left: 4px solid #3b82f6;
+    color: var(--text-secondary);
+    border-left: 4px solid var(--accent-primary);
     padding-left: 25px;
     margin: 30px 0;
     line-height: 1.6;
@@ -261,7 +271,7 @@ const caseStudies = [
   .tech-used h4 {
     font-size: 14px;
     font-weight: 600;
-    color: #718096;
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 15px;
@@ -274,8 +284,8 @@ const caseStudies = [
   }
 
   .tech-tag {
-    background: #f0f7ff;
-    color: #3b82f6;
+    background: var(--accent-gradient-soft);
+    color: var(--accent-primary);
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 13px;
@@ -283,8 +293,8 @@ const caseStudies = [
   }
 
   .cta-section {
-    background: #1a202c;
-    color: #fff;
+    background: var(--bg-dark);
+    color: var(--text-inverse);
     padding: 80px 0;
     text-align: center;
   }
@@ -297,14 +307,14 @@ const caseStudies = [
 
   .cta-section p {
     font-size: 18px;
-    color: #a0aec0;
+    color: var(--text-secondary);
     margin-bottom: 30px;
   }
 
   .cta-button {
     display: inline-block;
-    background: #10b981;
-    color: #fff;
+    background: var(--accent-tertiary);
+    color: var(--text-inverse);
     padding: 14px 32px;
     border-radius: 8px;
     font-weight: 600;
@@ -313,7 +323,7 @@ const caseStudies = [
   }
 
   .cta-button:hover {
-    background: #059669;
+    background: var(--accent-hover);
     transform: translateY(-2px);
   }
 
