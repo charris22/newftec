@@ -1,0 +1,9 @@
+{
+  "configurations": {
+    "app": {
+      "appLocation": "src",
+      "apiLocation": "api",
+      "outputLocation": "dist"
+    }
+  }
+}
