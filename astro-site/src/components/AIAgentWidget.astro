@@ -38,7 +38,7 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
     <div class="agent-messages" id={`messages-${widgetId}`}>
       <div class="welcome-message">
         <div class="welcome-header">
-          <img src="/assets/icons/newf-icon.svg" alt="Newf" class="welcome-avatar" width="32" height="32" />
+          <img src="/assets/icons/newf-icon.svg" alt="Newf" class="welcome-avatar" width="32" height="32" loading="lazy" />
           <span class="welcome-name">Newf</span>
         </div>
         <p>Hey there! I'm Newf, your AI assistant.</p>
@@ -96,7 +96,7 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
       msg.innerHTML = `<div class="message-bubble"><p>${text}</p></div>`;
     } else {
       msg.innerHTML = `
-        <img src="/assets/icons/newf-icon.svg" alt="Newf" class="bot-avatar" width="28" height="28" />
+        <img src="/assets/icons/newf-icon.svg" alt="Newf" class="bot-avatar" width="28" height="28" loading="lazy" />
         <div class="message-bubble"><p>${text}</p></div>
       `;
     }
@@ -109,7 +109,7 @@ const widgetId = `agent-${Math.random().toString(36).substr(2, 9)}`;
     indicator.className = 'message bot typing-indicator';
     indicator.id = `typing-${widgetId}`;
     indicator.innerHTML = `
-      <img src="/assets/icons/newf-icon.svg" alt="Newf" class="bot-avatar" width="28" height="28" />
+      <img src="/assets/icons/newf-icon.svg" alt="Newf" class="bot-avatar" width="28" height="28" loading="lazy" />
       <div class="typing-dots"><span></span><span></span><span></span></div>
     `;
     messages.appendChild(indicator);
