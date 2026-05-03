@@ -6,9 +6,9 @@ import ROICalculator from '../components/ROICalculator.astro';
 import AIAgentWidget from '../components/AIAgentWidget.astro';
 
 // API endpoint for AI chat widget
-const apiEndpoint = import.meta.env.DEV 
-  ? 'http://localhost:7073/api/chat' 
-  : '/api/chat';
+const apiEndpoint = import.meta.env.PUBLIC_CHAT_API_ENDPOINT || (import.meta.env.DEV
+  ? 'http://localhost:7071/api/chat'
+  : '/api/chat');
 
 const services = [
   {
